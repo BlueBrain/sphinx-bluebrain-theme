@@ -1,0 +1,9 @@
+img.badge {
+  margin: 0 0.2em;
+}
+
+li img.badge {
+  vertical-align: middle;
+  padding-bottom: 0.25em;
+  margin: unset;
+}

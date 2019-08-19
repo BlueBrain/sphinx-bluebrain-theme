@@ -1,0 +1,27 @@
+# compiled
+__pycache__
+*.py[cod]
+
+# distribution
+sphinx_bluebrain_theme/*
+!sphinx_bluebrain_theme/version.py
+*.egg-info
+.eggs/
+dist/
+
+# docs
+doc/build
+
+# test
+.tox
+.coverage
+coverage.xml
+htmlcov/
+pip-wheel-metadata
+
+# misc
+*.swp
+venv/
+
+# pyenv
+.python-version

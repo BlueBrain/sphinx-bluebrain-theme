@@ -1,0 +1,3 @@
+recursive-include sphinx_bluebrain_theme *
+
+global-exclude *.py[co] .DS_Store
