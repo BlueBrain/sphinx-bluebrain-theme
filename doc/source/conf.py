@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-#
-# Configuration file for the Sphinx documentation builder.
-#
+
+"""Configuration file for the Sphinx documentation builder."""
+
 # This file does only contain a selection of the most common options. For a
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
@@ -12,17 +12,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import os
-import sys
-
 import sphinx_bluebrain_theme
 
 # these pages will have the version overwritten so that it doesn't fail
 # when a new version is released.
 REGRESSION_TEST_PAGENAMES = {"regression"}
-
-confdir = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.abspath(os.path.join(confdir, "..", "..")))
 
 # -- Project information -----------------------------------------------------
 
@@ -198,8 +192,11 @@ epub_exclude_files = ["search.html"]
 
 
 def setup(app):
+    """Do the setup for the theme documentation."""
+
+    # pylint: disable=unused-argument
     def override_regression_test_version(app, pagename, templatename, context, doctree):
-        """Override the version for regression test pages to prevent failure duringa new release."""
+        """Override the version of regression test pages to prevent failure during a new release."""
         if pagename in REGRESSION_TEST_PAGENAMES:
             context["version"] = "regression"
 

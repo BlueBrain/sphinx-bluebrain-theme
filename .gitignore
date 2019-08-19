@@ -3,11 +3,14 @@ __pycache__
 *.py[cod]
 
 # distribution
-sphinx_bluebrain_theme/*
-!sphinx_bluebrain_theme/version.py
+sphinx_bluebrain_theme
 *.egg-info
 .eggs/
 dist/
+build/
+
+# don't track due to using setuptool_scm
+src/version.py
 
 # docs
 doc/build

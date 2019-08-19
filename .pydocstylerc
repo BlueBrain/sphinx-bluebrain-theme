@@ -1,5 +1,0 @@
-[pydocstyle]
-# ignore the following
-#   - D401: allow descriptive instead of imperative (Google style)
-#   - D413: no blank line afer last section
-add-ignore = D401, D413

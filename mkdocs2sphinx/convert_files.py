@@ -4,7 +4,6 @@ import io
 import os
 import re
 import shutil
-import subprocess
 from collections import defaultdict
 
 from mkdocs2sphinx.clear_blocks import remove_blocks
@@ -23,13 +22,6 @@ def copy_source(source_path, output_path, ignore_on_copy):
         shutil.rmtree(output_path)
 
     shutil.copytree(source_path, output_path, ignore=ignore_on_copy)
-
-    version_path = os.path.join(output_path, "version.py")
-
-    try:
-        subprocess.check_call(["git", "checkout", "--", version_path])
-    except subprocess.CalledProcessError:
-        raise RuntimeError("failed to checkout version.py")
 
 
 def do_replacements(src_text, replacement_map, stats):
