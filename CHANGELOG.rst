@@ -1,8 +1,9 @@
 Changelog
 =========
 
-0.0.12
-------
+Unreleased
+----------
+- |changed| Updated ``mkdocs-material`` to version ``4.4.0``.
 
 0.0.11
 ------
