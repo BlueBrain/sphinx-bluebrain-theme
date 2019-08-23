@@ -1,0 +1,8 @@
+deploy:
+  provider: pypi
+  on:
+    tags: true
+  user: bbp.opensource
+  password:
+    secure: dddd
+  skip_cleanup: true
