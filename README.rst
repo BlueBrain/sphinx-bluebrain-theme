@@ -63,6 +63,9 @@ a python module which injects additional required context.
       :target: https://github.com/psf/black
 
 .. substitutions
-.. |changelog| replace:: `CHANGELOG.rst`_
-.. |usage| replace:: `usage guide <doc/source/usage.rst>`_
-.. |sample| replace:: `samples <doc/source/sample.rst>`_
+.. |changelog| replace:: changelog_
+.. _changelog: CHANGELOG.rst
+.. |usage| replace:: `usage guide <usage_>`_
+.. _usage: doc/source/usage.rst
+.. |sample| replace:: `samples <sample_>`_
+.. _sample: doc/source/sample.rst
