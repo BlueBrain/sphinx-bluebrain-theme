@@ -12,7 +12,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import os
+import sys
+
 import sphinx_bluebrain_theme
+
+# add the root path to path for mkdocs2sphinx docs
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 # these pages will have the version overwritten so that it doesn't fail
 # when a new version is released.
