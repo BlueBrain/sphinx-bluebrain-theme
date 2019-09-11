@@ -2,7 +2,8 @@ deploy:
   provider: pypi
   on:
     tags: true
+  distributions: "sdist bdist_wheel"
   user: bbp.opensource
   password:
-    secure: dddd
+    secure: placeholder-secret
   skip_cleanup: true
