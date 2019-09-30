@@ -1,0 +1,183 @@
+/* Copyright (c) Blue Brain Project/EPFL 2018 – 2019. All rights reserved. */
+
+/* This file contains some fixes required specifically for sphinx. */
+
+/* fix for field list incorrect margin */
+table.field-list ul {
+  margin: 0em;
+}
+
+code.descname {
+  margin-left: 0em; /* fix spacing in autodoc output */
+  font-weight: bold; /* emphasize the function/class name */
+  box-shadow: 0.29412em 0 0 rgba(236, 236, 236, 0.5),
+              0 0 0 rgba(236, 236, 236, 0.5);
+}
+
+code.descclassname {
+  margin-right: 0em; /* fix spacing in autodoc output */
+  box-shadow: 0 0 0 rgba(236, 236, 236, 0.5),
+              -0.29412em 0 0 rgba(236, 236, 236, 0.5);
+}
+
+/* Fix for centre aligned field names */
+th.field-name {
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+/* Fix for strange vertical alignment in some field bodies */
+td.field-body > p.first {
+  margin: 0em;
+}
+
+/* Fix for wrapped return type field names */
+table.field-list tr:first-child th.field-name {
+  padding-left: 0.5em;
+}
+
+/* Reduce font size and spacing for autodoc output */
+/* Based on haiku theme font sizing */
+.autodoc-output {
+  font-size: 90%;
+}
+
+/* reduce left margin on lists */
+.md-typeset .autodoc-output dd {
+  margin: 0.5em 0 0.5em 1.25em;
+}
+
+.md-typeset .autodoc-output dd p {
+  margin: 0.5em 0;
+}
+
+/* keep classes etc. in normal font size. see .md-typeset */
+.autodoc-output > dl[class] > dt[id] {
+  font-size: 0.8rem;
+}
+
+/* Size methods etc. consistent with other headings */
+.autodoc-output > dl[class] > dd > dl[class] > dt > code {
+  font-size: 100%;
+}
+
+.autodoc-output > dl[class] > dd > dl[class] > dd > p {
+  margin: 0.5em 0em;
+}
+
+.autodoc-output > dl[class] > dd > dl[class] > *,
+.autodoc-output > dl[class] > dd > dl[class] > dd > * {
+  margin-top: 0em;
+}
+
+/* left align field lists with text in methods */
+.autodoc-output > dl[class] > dd > dl[class] > dd > ul {
+  margin-left: 0em;
+}
+
+.md-typeset .autodoc-output .field-list ul li,
+.md-typeset .autodoc-output .field-list ul li p {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+/* Bold the parameters heading */
+.autodoc-output dl.field-list dt {
+  font-weight: bold;
+}
+
+/* shrink autosummary tables */
+.md-typeset .autodoc-output table:not([class]) td {
+  padding: 0.4rem 0.6rem;
+}
+
+/* fix for mathjax rendered equations */
+.math {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* fix for code-blocks */
+.superfences-tabs .codehilite[id] {
+  margin: 0em;
+}
+
+/* right align attributions */
+.attribution {
+  text-align: right;
+}
+
+/* render sidebars correctly */
+.admonition.sidebar {
+  width: 30%;
+  float: right;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  margin-left: 0.625rem;
+}
+
+.sidebar-title {
+  font-weight: 700;
+}
+
+/* fix for small download links */
+.md-typeset a > code.download {
+  font-size: 100%;
+  font-weight: 700;
+}
+
+/* make tabs fixed min width and center aligned */
+.superfences-tabs label {
+  min-width: 5rem;
+  text-align: center;
+}
+
+/* fix for table content margins due to sphinx <p> in cells*/
+.md-typeset table p {
+  margin: 0rem;
+}
+
+/* make separation of classes and functions clearer match <hr> styling */
+.autodoc-output > dl[class] {
+  border-bottom: .05rem dotted rgba(0,0,0,.26);
+}
+
+/* ensure offset for anchors added in sphinx which are not headings */
+span[id]:empty:target::before {
+  display: block;
+  margin-top: -3.45rem;
+  padding-top: 3.45rem;
+  content: "";
+}
+
+span[id]:empty {
+  display: none;
+}
+
+/* reinstate underline for accelerator keys */
+.accelerator {
+  text-decoration: underline;
+}
+
+/* set formatting for htmlframes */
+iframe.sphinx-iframe {
+  width: 100%;
+  border: none;
+}
+
+/* align source/doc links correctly */
+.viewcode-link,
+.viewcode-back {
+  float: right;
+}
+
+.md-typeset div[id].viewcode-block:target {
+  margin-top: -3.4rem;
+  padding-top: 3.4rem;
+}
+
+/* fix code block tab hover */
+html .md-typeset .superfences-tabs > label:hover {
+  color: #0083CB;
+}
+
