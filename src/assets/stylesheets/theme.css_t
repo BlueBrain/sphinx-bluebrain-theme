@@ -234,6 +234,17 @@ iframe.sphinx-iframe {
   font-size: 1.2rem;
 }
 
+/* align source/doc links correctly */
+.viewcode-link,
+.viewcode-back {
+  float: right;
+}
+
+.md-typeset div[id].viewcode-block:target {
+  margin-top: -3.4rem;
+  padding-top: 3.4rem;
+}
+
 /*
 This section is enabled/disabled by a configuration variable in Sphinx. This
 allows us to only use the style changes we need unless specifically told not to.
