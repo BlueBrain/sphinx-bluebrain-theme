@@ -1,7 +1,6 @@
 """
 Test for the conversion of files.
 """
-
 from collections import defaultdict
 
 # pylint: disable=import-error

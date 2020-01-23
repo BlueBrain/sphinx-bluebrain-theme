@@ -103,6 +103,3 @@ class Page(NavBase):
     def __bool__(self):
         """If the page has a title and url then it is true."""
         return self.title is not None and self.url is not None
-
-    # required for python 2.7 compatibility
-    __nonzero__ = __bool__
