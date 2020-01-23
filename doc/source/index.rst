@@ -1,4 +1,5 @@
 .. include:: ../../README.rst
+   :end-before: .. substitutions
 
 .. toctree::
    :hidden:
@@ -9,3 +10,7 @@
    changelog
    contribute
    development
+
+.. |changelog| replace:: :doc:`changelog <changelog>`
+.. |usage| replace:: :doc:`usage guide <usage>`
+.. |sample| replace:: :doc:`samples <sample>`
