@@ -1,6 +1,7 @@
 """Override autodoc output to wrap in a div."""
 
 from docutils import nodes
+import sphinx.ext.autodoc as sea
 from sphinx.ext.autodoc.directive import AutodocDirective
 
 
@@ -22,8 +23,6 @@ def add_autodoc_override(app):
         # this will override the normal autodoc directive if required. See:
         # https://github.com/sphinx-doc/sphinx/blob/master/sphinx/ext/autodoc/__init__.py#L1464
         # https://github.com/sphinx-doc/sphinx/blob/15bc5a32bb0b78b432803e55fffa10c801182c75/sphinx/application.py#L996
-        import sphinx.ext.autodoc as sea
-
         documenters = [
             sea.ModuleDocumenter,
             sea.ClassDocumenter,

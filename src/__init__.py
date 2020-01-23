@@ -2,13 +2,12 @@
 
 from os import path
 
+from sphinx_bluebrain_theme import utils
 from sphinx_bluebrain_theme.version import version as __version__
 
 
 def setup(app):
     """Initialise the theme and connect theme specific functions to events."""
-    from sphinx_bluebrain_theme import utils
-
     app.add_html_theme("sphinx-bluebrain-theme", path.dirname(path.abspath(__file__)))
     app.setup_extension("sphinx_bluebrain_theme.ext.tabs")
     app.setup_extension("sphinx_bluebrain_theme.ext.details")

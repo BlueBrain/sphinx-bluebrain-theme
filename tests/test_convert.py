@@ -2,6 +2,8 @@
 Test for the conversion of files.
 """
 
+from collections import defaultdict
+
 # pylint: disable=import-error
 from nose import tools as nt
 from mkdocs2sphinx.convert_files import do_replacements, prepend_license
@@ -11,8 +13,6 @@ def test_do_replacements():
     """
     Test replacements with text blocks.
     """
-    from collections import defaultdict
-
     stats = defaultdict(int)
 
     text = """This is some text

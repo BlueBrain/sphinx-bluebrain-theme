@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.1.2
+-----
+
+|fixed| Image alignment issues when using RST ``:align:`` option.
+
 .. |fixed| image:: https://img.shields.io/badge/-fixed-success.svg
               :class: badge
 .. |added| image:: https://img.shields.io/badge/-added-seagreen.svg
