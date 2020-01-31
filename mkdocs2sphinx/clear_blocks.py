@@ -62,7 +62,8 @@ def remove_block(src_text, block_name_to_remove, keep_nested=True):
         if do_skip and not is_target:
             # we haven't found an instance of the target block yet
             continue
-        elif match["type"] == "block" and is_target:
+
+        if match["type"] == "block" and is_target:
             # we've found a target block so we need to take note of all
             # blocks/endblocks from here on
             do_skip = False

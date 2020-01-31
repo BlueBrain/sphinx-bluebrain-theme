@@ -1,6 +1,7 @@
 """Functions to inject additional context for the translation from mkdocs to sphinx."""
 
 import datetime
+from collections import defaultdict
 
 import sphinx
 import sphinx.util.logging
@@ -155,8 +156,6 @@ def inject_context_variables(app, pagename, templatename, context, doctree):
         context (dict): The context passed to the page template for rendering.
         doctree: A doctree when the page is created from reST documents.
     """
-    from collections import defaultdict
-
     con = defaultdict(lambda: None)
     con.update(context)
 

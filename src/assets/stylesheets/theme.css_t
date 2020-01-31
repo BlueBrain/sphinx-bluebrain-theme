@@ -1,5 +1,7 @@
 /*
- * Copyright (c) Blue Brain Project/EPFL 2018 – 2019. All rights reserved.
+ * Copyright (c) Blue Brain Project/EPFL 2018 – 2020.
+ * Released under the MIT License.
+ * See: https://github.com/BlueBrain/sphinx-bluebrain-theme/blob/master/LICENSE.txt
  */
 {#
 /*
@@ -10,6 +12,7 @@
 /* do the font imports */
 @import url("../fonts/open-sans.css");
 @import url("../fonts/titillium-web.css");
+@import url("../basic.css");
 
 /* fix for field list incorrect margin */
 table.field-list ul {
@@ -27,6 +30,20 @@ code.descclassname {
   margin-right: 0em; /* fix spacing in autodoc output */
   box-shadow: 0 0 0 rgba(236, 236, 236, 0.5),
               -0.29412em 0 0 rgba(236, 236, 236, 0.5);
+}
+
+/* Fix for topic not matching theme formatting */
+div.topic {
+  border-radius: 0.1rem;
+  padding: .525rem .6rem;
+}
+
+div.topic p:not(.topic-title) {
+  margin: 0em;
+}
+
+div.topic p.topic-title {
+  margin-top: 0em;
 }
 
 /* Fix for centre aligned field names */
@@ -172,6 +189,11 @@ dt[id] .headerlink {
 }
 
 /* render sidebars correctly */
+div.sidebar {
+  background-color: unset;
+  border: unset;
+}
+
 .admonition.sidebar {
   width: 30%;
   float: right;
@@ -312,6 +334,7 @@ button[data-md-color-accent="blue"] {
 .md-header-nav__button.md-logo img {
   height: 0.8rem;
   width: auto;
+  max-width: none;
   margin: 0.25rem 0.3rem;
 }
 
