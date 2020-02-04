@@ -12,7 +12,6 @@
 /* do the font imports */
 @import url("../fonts/open-sans.css");
 @import url("../fonts/titillium-web.css");
-@import url("../basic.css");
 
 /* fix for field list incorrect margin */
 table.field-list ul {
@@ -34,8 +33,9 @@ code.descclassname {
 
 /* Fix for topic not matching theme formatting */
 div.topic {
-  border-radius: 0.1rem;
+  border-radius: 0.2em;
   padding: .525rem .6rem;
+  border: .05rem solid rgba(0,0,0,.07);
 }
 
 div.topic p:not(.topic-title) {
@@ -189,11 +189,6 @@ dt[id] .headerlink {
 }
 
 /* render sidebars correctly */
-div.sidebar {
-  background-color: unset;
-  border: unset;
-}
-
 .admonition.sidebar {
   width: 30%;
   float: right;
@@ -334,7 +329,6 @@ button[data-md-color-accent="blue"] {
 .md-header-nav__button.md-logo img {
   height: 0.8rem;
   width: auto;
-  max-width: none;
   margin: 0.25rem 0.3rem;
 }
 
