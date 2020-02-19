@@ -258,9 +258,8 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
 
         # check if it is a git repo
         try:
-            cmd = ["git", "-C", clone_path, "rev-parse", "--is-inside-worktree"]
-            check_call(cmd)
-            is_in_git_repo = True
+            cmd = ["git", "-C", clone_path, "rev-parse", "--is-inside-work-tree"]
+            is_in_git_repo = check_output(cmd).decode("utf-8") == "true"
         except CalledProcessError:
             is_in_git_repo = False
 
