@@ -5,7 +5,7 @@ import os
 import sys
 
 from contextlib import contextmanager
-from subprocess import check_call, check_output, CalledProcessError
+from subprocess import check_output, CalledProcessError
 
 import sphinx
 from pkg_resources import get_distribution
@@ -258,9 +258,8 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
 
         # check if it is a git repo
         try:
-            cmd = ["git", "-C", clone_path, "rev-parse", "--is-inside-worktree"]
-            check_call(cmd)
-            is_in_git_repo = True
+            cmd = ["git", "-C", clone_path, "rev-parse", "--is-inside-work-tree"]
+            is_in_git_repo = check_output(cmd).decode("utf-8") == "true"
         except CalledProcessError:
             is_in_git_repo = False
 
@@ -269,7 +268,10 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
 
             contributors = check_output(cmd).decode("utf-8").splitlines()
             contributors = [line.split("\t", 2)[1] for line in contributors]
-            contributors = ", ".join(c for i, c in enumerate(contributors) if i < 5)
+            has_etal = len(contributors) > 5
+
+            # get top five contributors and account for any additional
+            contributors = ", ".join(contributors[:5]) + " et al." if has_etal else ""
         elif not repo_path:
             contributors = "None"
 
