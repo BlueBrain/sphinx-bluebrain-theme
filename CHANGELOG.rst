@@ -4,7 +4,7 @@ Changelog
 0.1.2
 -----
 
-|fixed| Image alignment issues when using RST ``:align:`` option.
+- |fixed| Image alignment flags.
 
 .. |fixed| image:: https://img.shields.io/badge/-fixed-success.svg
               :class: badge
