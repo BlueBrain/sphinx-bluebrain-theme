@@ -268,7 +268,10 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
 
             contributors = check_output(cmd).decode("utf-8").splitlines()
             contributors = [line.split("\t", 2)[1] for line in contributors]
-            contributors = ", ".join(c for i, c in enumerate(contributors) if i < 5)
+            has_etal = len(contributors) > 5
+
+            # get top five contributors and account for any additional
+            contributors = ", ".join(contributors[:5]) + " et al." if has_etal else ""
         elif not repo_path:
             contributors = "None"
 
