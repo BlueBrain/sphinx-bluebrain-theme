@@ -1,7 +1,7 @@
 Sphinx BlueBrain Theme
 ======================
 
-|mit| |black|
+|mit| |black| |travis|
 
 Introduction
 ------------
@@ -61,6 +61,9 @@ a python module which injects additional required context.
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
       :class: badge
       :target: https://github.com/psf/black
+.. |travis| image:: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme.svg?token=1xaP3KWGztXfwid7bxMA&branch=master
+      :class: badge
+
 
 .. substitutions
 .. |changelog| replace:: changelog_
