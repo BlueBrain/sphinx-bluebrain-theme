@@ -5,7 +5,7 @@ import os
 import sys
 
 from contextlib import contextmanager
-from subprocess import check_call, check_output, CalledProcessError
+from subprocess import check_output, CalledProcessError
 
 import sphinx
 from pkg_resources import get_distribution
