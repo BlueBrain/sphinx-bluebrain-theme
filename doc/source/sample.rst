@@ -389,3 +389,25 @@ Embed existing HTML files (such as Doxygen output) in generated pages.
    :language: rst
    :start-at: IFrames
    :end-before: .. literalinclude
+
+Images
+~~~~~~
+
+Embed an image with optional alignment.
+
+.. image:: _images/epfl-logo-new.svg
+   :width: 25%
+   :align: left
+
+.. image:: _images/epfl-logo-new.svg
+   :width: 25%
+   :align: center
+
+.. image:: _images/epfl-logo-new.svg
+   :width: 25%
+   :align: right
+
+.. literalinclude:: sample.rst
+   :language: rst
+   :start-at: Images
+   :end-before: .. literalinclude

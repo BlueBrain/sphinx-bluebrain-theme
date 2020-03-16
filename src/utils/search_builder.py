@@ -6,6 +6,7 @@ approach used by mkdocs to generate it
 """
 
 import re
+from json import dumps
 
 try:
     from html.parser import HTMLParser
@@ -81,8 +82,6 @@ class SearchIndexBuilder(HTMLParser):
 
         The dumped json is used for the search index build.
         """
-        from json import dumps
-
         return dumps(
             {"docs": [e.as_dict() for e in self._entries], "config": {}}, sort_keys=True
         )

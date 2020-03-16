@@ -1,4 +1,8 @@
-/* Copyright (c) Blue Brain Project/EPFL 2018 – 2019. All rights reserved.*/
+/*
+ * Copyright (c) Blue Brain Project/EPFL 2018 – 2020.
+ * Released under the MIT License.
+ * See: https://github.com/BlueBrain/sphinx-bluebrain-theme/blob/master/LICENSE.txt
+ */
 {% include "templates/stylesheets/open-sans.css" %}
 {% include "templates/stylesheets/titillium-web.css" %}
 {% include "templates/stylesheets/sphinx_style.css" %}

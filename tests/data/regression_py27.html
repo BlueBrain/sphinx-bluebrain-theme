@@ -617,6 +617,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#images" class="md-nav__link">
+    Images
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -794,7 +801,7 @@ file in the same directory as your <code class="file docutils literal notranslat
 <span class="gh">~~~~~~~~~~~</span>
 
 <span class="p">..</span> <span class="ow">role</span><span class="p">::</span> py3(code)
-   <span class="nc">:language:</span> <span class="nf">python3</span>
+   <span class="nc">:language:</span> python3
 
 Here is some sample inline code: <span class="na">:py3:</span><span class="nv">`if test: return True`</span>.
 </pre></div>
@@ -812,7 +819,7 @@ Here is some sample inline code: <span class="na">:py3:</span><span class="nv">`
 
 <span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> python3
    <span class="nc">:linenos:</span>
-   <span class="nc">:emphasize-lines:</span> <span class="nf">2</span>
+   <span class="nc">:emphasize-lines:</span> 2
 
    def double(x):
       return 2 * x
@@ -869,7 +876,7 @@ can be entered directly or included from a file.
        require sys
 
 <span class="p">   ..</span> <span class="ow">literaltab</span><span class="p">::</span> sample.py From file
-      <span class="nc">:language:</span> <span class="nf">python3</span>
+      <span class="nc">:language:</span> python3
 </pre></div>
 </div>
 </div>
@@ -1076,52 +1083,52 @@ These types require you to add the class explicitly using <span class="s">``:cla
 Applicable classnames are shown in each admonition.
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Abstract
-   <span class="nc">:class:</span> <span class="nf">abstract</span>
+   <span class="nc">:class:</span> abstract
 
    <span class="m">-</span> abstract
    <span class="m">-</span> summary
    <span class="m">-</span> tldr
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Info
-   <span class="nc">:class:</span> <span class="nf">info</span>
+   <span class="nc">:class:</span> info
 
    <span class="m">-</span> info
    <span class="m">-</span> todo
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Success
-   <span class="nc">:class:</span> <span class="nf">success</span>
+   <span class="nc">:class:</span> success
 
    <span class="m">-</span> success
    <span class="m">-</span> check
    <span class="m">-</span> done
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Question
-   <span class="nc">:class:</span> <span class="nf">question</span>
+   <span class="nc">:class:</span> question
 
    <span class="m">-</span> question
    <span class="m">-</span> help
    <span class="m">-</span> faq
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Failure
-   <span class="nc">:class:</span> <span class="nf">failure</span>
+   <span class="nc">:class:</span> failure
 
    <span class="m">-</span> failure
    <span class="m">-</span> fail
    <span class="m">-</span> missing
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Bug
-   <span class="nc">:class:</span> <span class="nf">bug</span>
+   <span class="nc">:class:</span> bug
 
    <span class="m">-</span> bug
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Example
-   <span class="nc">:class:</span> <span class="nf">example</span>
+   <span class="nc">:class:</span> example
 
    <span class="m">-</span> example
    <span class="m">-</span> snippet
 
 <span class="p">..</span> <span class="ow">admonition</span><span class="p">::</span> Quote
-   <span class="nc">:class:</span> <span class="nf">quote</span>
+   <span class="nc">:class:</span> quote
 
    <span class="m">-</span> quote
    <span class="m">-</span> cite
@@ -1199,7 +1206,7 @@ Here is some text after a horizontal rule
 <div class="section" id="topics">
 <h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
 <div class="topic">
-<p class="topic-title first">Topic title</p>
+<p class="topic-title">Topic title</p>
 <p>This is a topic</p>
 </div>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Topics</span>
@@ -1224,7 +1231,7 @@ sidebar.</p>
 <span class="gh">~~~~~~~~</span>
 
 <span class="p">..</span> <span class="ow">sidebar</span><span class="p">::</span> Sidebar title
-   <span class="nc">:class:</span> <span class="nf">admonition</span>
+   <span class="nc">:class:</span> admonition
 
    This is a sidebar
 
@@ -1264,6 +1271,34 @@ sidebar.
 Embed existing HTML files (such as Doxygen output) in generated pages.
 
 <span class="p">..</span> <span class="ow">iframe</span><span class="p">::</span> index.html
+</pre></div>
+</div>
+</div>
+<div class="section" id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<p>Embed an image with optional alignment.</p>
+<a class="reference internal image-reference" href="_images/epfl-logo-new.svg"><div align="left" class="align-left"><img alt="_images/epfl-logo-new.svg" src="_images/epfl-logo-new.svg" width="25%" /></div>
+</a>
+<a class="reference internal image-reference" href="_images/epfl-logo-new.svg"><div align="center" class="align-center"><img alt="_images/epfl-logo-new.svg" src="_images/epfl-logo-new.svg" width="25%" /></div>
+</a>
+<a class="reference internal image-reference" href="_images/epfl-logo-new.svg"><div align="right" class="align-right"><img alt="_images/epfl-logo-new.svg" src="_images/epfl-logo-new.svg" width="25%" /></div>
+</a>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Images</span>
+<span class="gh">~~~~~~</span>
+
+Embed an image with optional alignment.
+
+<span class="p">..</span> <span class="ow">image</span><span class="p">::</span> _images/epfl-logo-new.svg
+   <span class="nc">:width:</span> 25%
+   <span class="nc">:align:</span> left
+
+<span class="p">..</span> <span class="ow">image</span><span class="p">::</span> _images/epfl-logo-new.svg
+   <span class="nc">:width:</span> 25%
+   <span class="nc">:align:</span> center
+
+<span class="p">..</span> <span class="ow">image</span><span class="p">::</span> _images/epfl-logo-new.svg
+   <span class="nc">:width:</span> 25%
+   <span class="nc">:align:</span> right
 </pre></div>
 </div>
 </div>
@@ -1319,7 +1354,7 @@ Embed existing HTML files (such as Doxygen output) in generated pages.
         
         
           <div class="md-footer-copyright__highlight">
-            &copy; Blue Brain Project/EPFL 2005-2019. All rights reserved.
+            &copy; Blue Brain Project/EPFL 2005-2020. All rights reserved.
           </div>
         
         

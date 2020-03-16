@@ -5,7 +5,7 @@ import os
 import sys
 
 from contextlib import contextmanager
-from subprocess import check_output
+from subprocess import check_output, CalledProcessError
 
 import sphinx
 from pkg_resources import get_distribution
@@ -256,11 +256,25 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
                 raise IOError("%s: not a git repository" % repo_path)
             clone_path = os.path.dirname(repo_path)
 
-        cmd = ["git", "-C", clone_path, "shortlog", "-sne", "origin/master"]
+        # check if it is a git repo
+        try:
+            cmd = ["git", "-C", clone_path, "rev-parse", "--is-inside-work-tree"]
+            is_in_git_repo = check_output(cmd).decode("utf-8") == "true"
+        except CalledProcessError:
+            is_in_git_repo = False
 
-        contributors = check_output(cmd).decode("utf-8").splitlines()
-        contributors = [line.split("\t", 2)[1] for line in contributors]
-        contributors = ", ".join(c for i, c in enumerate(contributors) if i < 5)
+        if is_in_git_repo:
+            cmd = ["git", "-C", clone_path, "shortlog", "-sne", "origin/master"]
+
+            contributors = check_output(cmd).decode("utf-8").splitlines()
+            contributors = [line.split("\t", 2)[1] for line in contributors]
+            has_etal = len(contributors) > 5
+
+            # get top five contributors and account for any additional
+            contributors = ", ".join(contributors[:5]) + " et al." if has_etal else ""
+        elif not repo_path:
+            contributors = "None"
+
         metadata["contributors"] = contributors
 
     # don't check for None here, as we also want to catch an empty string
