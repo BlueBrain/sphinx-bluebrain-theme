@@ -25,8 +25,10 @@ Refer to the |usage| for how to use the theme.
 License
 -------
 
-The code for the theme is licensed under the MIT License. Note that the EPFL
-logo is **not** licensed under the MIT License.
+The code for the theme is licensed under the MIT License.
+
+The name "Blue Brain Project" and the EPFL logo are property of their respective
+owners and do not fall under the MIT license.
 
 The theme incorporates third party components which are listed below, along with their relevant licenses:
 
@@ -48,8 +50,7 @@ MkDocs* theme by Martin Donath (@squidfunk).
 The `original theme <https://github.com/squidfunk/mkdocs-material>`__ is
 licensed under the MIT license and is hosted on GitHub.
 
-You can see examples (and the associated ``rst`` source) in the
-|sample| page.
+You can see examples (and the associated ``rst`` source) in the |sample| page.
 
 Sphinx BlueBrain Theme is built through a combination of text replacement rules,
 HTML template overrides, a small amount of additional CSS and Javascript, and
@@ -63,7 +64,6 @@ a python module which injects additional required context.
       :target: https://github.com/psf/black
 .. |travis| image:: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme.svg?token=1xaP3KWGztXfwid7bxMA&branch=master
       :class: badge
-
 
 .. substitutions
 .. |changelog| replace:: changelog_
