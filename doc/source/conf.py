@@ -15,7 +15,7 @@
 import os
 import sys
 
-import sphinx_bluebrain_theme
+from pkg_resources import get_distribution
 
 # add the root path to path for mkdocs2sphinx docs
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -29,11 +29,9 @@ REGRESSION_TEST_PAGENAMES = {"regression"}
 project = u"sphinx-bluebrain-theme"
 author = u"BlueBrain NSE"
 
-# The short X.Y version
-version = sphinx_bluebrain_theme.__version__
 # The full version, including alpha/beta/rc tags
-release = sphinx_bluebrain_theme.__version__
-
+release = get_distribution('sphinx-bluebrain-theme').version
+version = release
 
 # -- General configuration ---------------------------------------------------
 
@@ -206,7 +204,17 @@ def setup(app):
         if pagename in REGRESSION_TEST_PAGENAMES:
             context["version"] = "regression"
 
+    # pylint: disable=unused-argument
+    def override_rtd_version(app, pagename, templatename, context, doctree):
+        """Override the version on readthedocs.
+
+        Readthedocs places the version in an injected box, so we can remove it.
+        """
+        if context.get("READTHEDOCS", False):
+            context["version"] = ""
+
     # add custom stylesheet
     app.add_css_file("custom.css")
 
     app.connect("html-page-context", override_regression_test_version)
+    app.connect("html-page-context", override_rtd_version)
