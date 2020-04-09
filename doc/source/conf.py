@@ -30,7 +30,7 @@ project = u"sphinx-bluebrain-theme"
 author = u"BlueBrain NSE"
 
 # The full version, including alpha/beta/rc tags
-release = get_distribution('sphinx-bluebrain-theme').version
+release = get_distribution("sphinx-bluebrain-theme").version
 version = release
 
 # -- General configuration ---------------------------------------------------
