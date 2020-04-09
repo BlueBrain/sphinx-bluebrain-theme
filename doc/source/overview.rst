@@ -6,11 +6,11 @@ given below:
 
 #. User clones ``sphinx-bluebrain-theme`` git repository::
 
-      git clone --recursive ssh://bbpcode.epfl.ch/nse/sphinx-bluebrain-theme
+      git clone --recursive https://github.com/BlueBrain/sphinx-bluebrain-theme.git
 
-#. User runs ``build-theme`` tox environment::
+#. User runs ``tox`` tox environment::
 
-      tox -e build-theme
+      tox
 
 #. This environment runs ``translate_templates.py``, which does the following:
 
