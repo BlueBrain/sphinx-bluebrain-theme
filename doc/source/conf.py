@@ -205,16 +205,16 @@ def setup(app):
             context["version"] = "regression"
 
     # pylint: disable=unused-argument
-    def override_rtd_version(app, pagename, templatename, context, doctree):
+    def override_with_rtd_version(app, pagename, templatename, context, doctree):
         """Override the version on readthedocs.
 
         Readthedocs places the version in an injected box, so we can remove it.
         """
         if context.get("READTHEDOCS", False):
-            context["version"] = ""
+            context["version"] = context["current_version"]
 
     # add custom stylesheet
     app.add_css_file("custom.css")
 
     app.connect("html-page-context", override_regression_test_version)
-    app.connect("html-page-context", override_rtd_version)
+    app.connect("html-page-context", override_with_rtd_version)
