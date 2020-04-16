@@ -7,5 +7,3 @@ Theme developers
 
    building
    overview
-   mkdocs2sphinx
-   utilities

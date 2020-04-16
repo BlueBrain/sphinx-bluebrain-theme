@@ -289,6 +289,15 @@ iframe.sphinx-iframe {
   padding-top: 3.4rem;
 }
 
+/* Read the docs requires some specific overrides */
+.injected > * {
+  font-size: 160%;
+}
+
+.fa-book::before {
+  padding-top: 0.5em;
+}
+
 /*
 This section is enabled/disabled by a configuration variable in Sphinx. This
 allows us to only use the style changes we need unless specifically told not to.
