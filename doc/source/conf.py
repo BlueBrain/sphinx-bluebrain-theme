@@ -1,5 +1,5 @@
-# Configuration file for the Sphinx documentation builder.
-#
+"""Configuration file for the Sphinx documentation builder."""
+
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
@@ -32,6 +32,9 @@ extensions = ["sphinx.ext.autodoc", "sphinx.ext.intersphinx", "sphinx.ext.napole
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
+# The master toctree document.
+master_doc = "index"
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -47,8 +50,8 @@ html_theme = "sphinx-bluebrain-theme"
 html_title = "Sphinx BlueBrain Theme"
 html_favicon = "favicon.ico"
 html_theme_options = {
-    "repo_url": "https://github.com/BlueBrain/NeuroR/",
-    "repo_name": "BlueBrain/NeuroR",
+    "repo_url": "https://github.com/BlueBrain/sphinx-bluebrain-theme/",
+    "repo_name": "BlueBrain/sphinx-bluebrain-theme",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
