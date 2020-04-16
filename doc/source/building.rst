@@ -4,13 +4,13 @@ Building the theme
 In order to build the theme, you must first checkout the
 ``sphinx-bluebrain-theme`` source::
 
-   git clone --recursive ssh://bbpcode.epfl.ch/nse/sphinx-bluebrain-theme
+   git clone --recursive https://github.com/BlueBrain/sphinx-bluebrain-theme.git
 
 This will also clone the ``mkdocs-material`` submodule which is required.
 
-Building the theme is very simple::
+Building and testing the theme is very simple::
 
-   tox -e build-theme
+   tox
 
 This will run the necessary conversion scripts and copy the required source
 files.
