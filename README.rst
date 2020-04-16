@@ -57,15 +57,15 @@ HTML template overrides, a small amount of additional CSS and Javascript, and
 a python module which injects additional required context.
 
 .. |build_status| image:: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme.svg?branch=master
-   :target: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme
-   :alt: Build Status
+                     :target: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme
+                     :alt: Build Status
 
 .. |license| image:: https://img.shields.io/pypi/l/sphinx-bluebrain-theme
                 :target: https://github.com/BlueBrain/sphinx-bluebrain-theme/blob/master/LICENSE.txt
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-      :class: badge
-      :target: https://github.com/psf/black
+              :class: badge
+              :target: https://github.com/psf/black
 
 .. |docs| image:: https://readthedocs.org/projects/sphinx-bluebrain-theme/badge/?version=latest
              :target: https://sphinx-bluebrain-theme.readthedocs.io/
