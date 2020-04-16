@@ -5,6 +5,7 @@ Changelog
 -----
 
 - |fixed| Image alignment flags.
+- |fixed| ReadtheDocs injected version box styling.
 
 .. |fixed| image:: https://img.shields.io/badge/-fixed-success.svg
               :class: badge
