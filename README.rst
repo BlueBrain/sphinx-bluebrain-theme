@@ -64,7 +64,6 @@ a python module which injects additional required context.
                 :target: https://github.com/BlueBrain/sphinx-bluebrain-theme/blob/master/LICENSE.txt
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-              :class: badge
               :target: https://github.com/psf/black
 
 .. |docs| image:: https://readthedocs.org/projects/sphinx-bluebrain-theme/badge/?version=latest
