@@ -1,0 +1,43 @@
+{% from "basic/layout.html" import css with context %}
+{% from "basic/layout.html" import script with context %}
+{%- set url_root = pathto('', 1) %}
+{%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
+{%- set base_url = url_root + '_static' %}
+{%- set mkdocs_version = sphinx_version %}
+
+{% extends "base.html" %}
+
+{% block site_meta %}
+{{ super() }}
+{# from sphinx basic theme #}
+{{- metatags }}
+<!-- Generator banner -->
+<meta name="generator" content="sphinx-{{ sphinx_version }}" />
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+{# from sphinx basic theme #}
+{{- css() }}
+{% endblock %}
+
+{% block fonts %}
+{% endblock %}
+
+{% block source %}
+  {% if show_source and has_source and sourcename %}
+    <h2 id="__source">{{ lang.t("meta.source") }}</h2>
+    <a href="{{ pathto('_sources/' + sourcename, 1) | e }}" title="{{ sourcename | replace('.txt', '') }}" class="md-source-file">
+      {{ sourcename | replace('.txt', '') }}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+{{- script() }}
+<script src="{{ pathto('_static/javascripts/theme.js', 1) }}"></script>
+{{ super() }}
+{% endblock %}
+
+{% block analytics %}
+{% endblock %}

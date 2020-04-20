@@ -77,7 +77,7 @@ def prepend_license(license_text, src_text, filename):
 
     com = comment_symbols[ext]
 
-    lic = "\n".join(("".join((com[1], l)) for l in license_text))
+    lic = "\n".join(("".join((com[1], l)).rstrip() for l in license_text))
     lic = "\n".join((com[0], lic, com[2]))
 
     if ext == ".html":

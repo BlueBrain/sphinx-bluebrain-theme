@@ -1,3 +1,7 @@
 recursive-include sphinx_bluebrain_theme *
 
+recursive-exclude src *
+recursive-exclude mkdocs2sphinx *
+recursive-exclude mkdocs-material *
+
 global-exclude *.py[co] .DS_Store

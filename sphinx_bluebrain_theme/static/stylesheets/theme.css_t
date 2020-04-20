@@ -1,0 +1,529 @@
+/*
+ * Copyright (c) Blue Brain Project/EPFL 2018 – 2020.
+ * Released under the MIT License.
+ * See: https://github.com/BlueBrain/sphinx-bluebrain-theme/blob/master/LICENSE.txt
+ */
+{#
+/*
+ * This file contains some fixes required as a result of the translation
+ * between mkdocs and sphinx.
+ */
+#}
+/* do the font imports */
+@import url("../fonts/open-sans.css");
+@import url("../fonts/titillium-web.css");
+
+/* fix for field list incorrect margin */
+table.field-list ul {
+  margin: 0em;
+}
+
+code.descname {
+  margin-left: 0em; /* fix spacing in autodoc output */
+  font-weight: bold; /* emphasize the function/class name */
+  box-shadow: 0.29412em 0 0 rgba(236, 236, 236, 0.5),
+              0 0 0 rgba(236, 236, 236, 0.5);
+}
+
+code.descclassname {
+  margin-right: 0em; /* fix spacing in autodoc output */
+  box-shadow: 0 0 0 rgba(236, 236, 236, 0.5),
+              -0.29412em 0 0 rgba(236, 236, 236, 0.5);
+}
+
+/* Fix for topic not matching theme formatting */
+div.topic {
+  border-radius: 0.2em;
+  padding: .525rem .6rem;
+  border: .05rem solid rgba(0,0,0,.07);
+}
+
+/* fix alignment from rst */
+.align-left {
+  float: left;
+  clear: left;
+  margin: 1em 0em;
+}
+
+.align-right {
+  float: right;
+  clear: right;
+  margin: 1em 0em;
+}
+
+.align-center {
+  display: block;
+  clear: both;
+  margin-top: 1em;
+  margin-right: auto;
+  margin-bottom: 1em;
+  margin-left: auto;
+}
+
+/* code blocks need to be cleared also */
+div[class^="highlight-"] {
+  clear: both;
+}
+
+div.topic p:not(.topic-title) {
+  margin: 0em;
+}
+
+div.topic p.topic-title {
+  margin-top: 0em;
+}
+
+/* Fix for centre aligned field names */
+th.field-name {
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+/* Fix for strange vertical alignment in some field bodies */
+td.field-body > p.first {
+  margin: 0em;
+}
+
+/* Fix for wrapped return type field names */
+table.field-list tr:first-child th.field-name {
+  padding-left: 0.5em;
+}
+
+/* differentiate different list levels, matches RTD */
+.md-typeset ul li li {
+  list-style-type: circle;
+}
+
+.md-typeset ul li li li {
+  list-style-type: square;
+}
+
+/* Reduce font size and spacing for autodoc output */
+/* Based on haiku theme font sizing */
+.autodoc-output {
+  font-size: 90%;
+}
+
+/* reduce left margin on lists */
+.md-typeset .autodoc-output dd {
+  margin: 0.5em 0 0.5em 1.25em;
+}
+
+.md-typeset .autodoc-output dd p {
+  margin: 0.5em 0;
+}
+
+/* keep classes etc. in normal font size. see .md-typeset */
+.autodoc-output > dl[class] > dt[id] {
+  font-size: 0.8rem;
+}
+
+/* Size methods etc. consistent with other headings */
+.autodoc-output > dl[class] > dd > dl[class] > dt > code {
+  font-size: 100%;
+}
+
+.autodoc-output > dl[class] > dd > dl[class] > dd > p {
+  margin: 0.5em 0em;
+}
+
+.autodoc-output > dl[class] > dd > dl[class] > *,
+.autodoc-output > dl[class] > dd > dl[class] > dd > * {
+  margin-top: 0em;
+}
+
+/* left align field lists with text in methods */
+.autodoc-output > dl[class] > dd > dl[class] > dd > ul {
+  margin-left: 0em;
+}
+
+.md-typeset .autodoc-output .field-list ul li,
+.md-typeset .autodoc-output .field-list ul li p {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+/* Bold the parameters heading */
+.autodoc-output dl.field-list dt {
+  font-weight: bold;
+}
+
+/* shrink autosummary tables */
+.md-typeset .autodoc-output table:not([class]) td {
+  padding: 0.4rem 0.6rem;
+}
+
+/* Add highlighting material mkdocs highlights and restrict to the contents */
+article span.highlighted {
+  background-color: rgba(255, 235, 59, 0.5);
+}
+
+/*
+prevent jumping when navigating between pages that require a vertical
+scrollbar and those that don't
+*/
+html {
+  overflow-y: scroll;
+}
+
+/* fix for tables on Chrome */
+colgroup {
+  display: inherit;
+}
+
+/* fix for mathjax rendered equations */
+.math {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* fix for code-blocks */
+.superfences-tabs .codehilite[id] {
+  margin: 0em;
+}
+
+/*
+fix for API anchors being hidden by header see _permalinks.scss using
+delta=0.45rem.
+*/
+dt[id]::before {
+  display: block;
+  margin-top: -0.45rem;
+  padding-top: 0.45rem;
+  content: "";
+}
+
+dt[id]:target::before {
+  margin-top: -3.45rem;
+  padding-top: 3.45rem;
+}
+
+dt[id]:hover  .headerlink,
+dt[id]:target .headerlink,
+dt[id] .headerlink:focus {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+dt[id] .headerlink {
+  margin-left: 0.25rem;
+  display: unset;
+}
+
+/* right align attributions */
+.attribution {
+  text-align: right;
+}
+
+/* render sidebars correctly */
+.admonition.sidebar {
+  width: 30%;
+  float: right;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  margin-left: 0.625rem;
+}
+
+.sidebar-title {
+  font-weight: 700;
+}
+
+/* fix for small download links */
+.md-typeset a > code.download {
+  font-size: 100%;
+  font-weight: 700;
+}
+
+/* make tabs fixed min width and center aligned */
+.superfences-tabs label {
+  min-width: 5rem;
+  text-align: center;
+}
+
+/* fix for table content margins due to sphinx <p> in cells*/
+.md-typeset table p {
+  margin: 0rem;
+}
+
+/* make separation of classes and functions clearer match <hr> styling */
+.autodoc-output > dl[class] {
+  border-bottom: .05rem dotted rgba(0,0,0,.26);
+}
+
+/* ensure offset for anchors added in sphinx which are not headings */
+span[id]:empty:target::before {
+  display: block;
+  margin-top: -3.45rem;
+  padding-top: 3.45rem;
+  content: "";
+}
+
+span[id]:empty {
+  display: none;
+}
+
+/* reinstate underline for accelerator keys */
+.accelerator {
+  text-decoration: underline;
+}
+
+/* set formatting for htmlframes */
+iframe.sphinx-iframe {
+  width: 100%;
+  border: none;
+}
+
+/* make hero font size match header */
+.md-hero__inner {
+  font-size: 1.2rem;
+}
+
+/* align source/doc links correctly */
+.viewcode-link,
+.viewcode-back {
+  float: right;
+}
+
+.md-typeset div[id].viewcode-block:target {
+  margin-top: -3.4rem;
+  padding-top: 3.4rem;
+}
+
+/* Read the docs requires some specific overrides */
+.injected > * {
+  font-size: 160%;
+}
+
+.fa-book::before {
+  padding-top: 0.5em;
+}
+
+/*
+This section is enabled/disabled by a configuration variable in Sphinx. This
+allows us to only use the style changes we need unless specifically told not to.
+*/
+{% if not theme_use_original_style %}
+
+/* override the theme colour here */
+button[data-md-color-primary="blue"],
+[data-md-color-primary="blue"] .md-header,
+[data-md-color-primary="blue"] .md-hero {
+  background-color: #050A56; }
+
+[data-md-color-primary="blue"] .md-typeset a,
+[data-md-color-primary="blue"] .md-nav__link:active,
+[data-md-color-primary="blue"] .md-nav__link--active {
+  color: #0083CB; }
+
+/* based on (5, 10, 86, 1)*0.75 + (0, 0, 0, 0.87)*0.25 */
+@media only screen and (max-width: 59.9375em) {
+  [data-md-color-primary="blue"] .md-nav__source {
+    background-color: rgba(4, 8, 65, 0.9675); } }
+
+@media only screen and (max-width: 76.1875em) {
+  html [data-md-color-primary="blue"] .md-nav--primary .md-nav__title--site {
+    background-color: #050A56; } }
+
+@media only screen and (min-width: 76.25em) {
+  [data-md-color-primary="blue"] .md-tabs {
+    background-color: #050A56; } }
+
+/* accent colors */
+button[data-md-color-accent="blue"] {
+  background-color: #0083CB; }
+
+[data-md-color-accent="blue"] .md-typeset a:hover,
+[data-md-color-accent="blue"] .md-typeset a:active,
+[data-md-color-accent="blue"] .md-typeset .md-clipboard:hover::before,
+[data-md-color-accent="blue"] .md-typeset .md-clipboard:active::before,
+[data-md-color-accent="blue"] .md-typeset .footnote li:hover .footnote-backref:hover,
+[data-md-color-accent="blue"] .md-typeset .footnote li:target .footnote-backref,
+[data-md-color-accent="blue"] .md-typeset [id]:hover .headerlink:hover,
+[data-md-color-accent="blue"] .md-typeset [id]:target .headerlink,
+[data-md-color-accent="blue"] .md-typeset [id] .headerlink:focus {
+  color: #0083CB; }
+
+[data-md-color-accent="blue"] .md-typeset pre code::-webkit-scrollbar-thumb:hover,
+[data-md-color-accent="blue"] .md-typeset .codehilite pre::-webkit-scrollbar-thumb:hover {
+  background-color: #0083CB; }
+
+[data-md-color-accent="blue"] .md-nav__link:focus,
+[data-md-color-accent="blue"] .md-nav__link:hover {
+  color: #0083CB; }
+
+[data-md-color-accent="blue"] .md-search__scrollwrap::-webkit-scrollbar-thumb:hover,
+[data-md-color-accent="blue"] .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:hover,
+[data-md-color-accent="blue"] .md-source-file:hover::before {
+  background-color: #0083CB; }
+
+[data-md-color-accent="blue"] .md-search-result__link[data-md-state="active"],
+[data-md-color-accent="blue"] .md-search-result__link:hover {
+  background-color: rgba(5, 10, 86, 0.1); }
+/* end accent colors */
+
+/* set the logo to the correct size and location if required */
+.md-header-nav__button.md-logo img {
+  height: 0.8rem;
+  width: auto;
+  margin: 0.25rem 0.3rem;
+}
+
+/* fix the logo on mobile devices */
+html .md-nav--primary .md-nav__title--site .md-nav__button {
+  width: 50%;
+  left: 0.2rem;
+  margin-top: -0.15rem;
+}
+
+/* current code background colour is very close to style guide, leave as is */
+/*
+.md-typeset code, .md-typeset pre {
+  background-color: #f2f2f2;
+}*/
+
+/* set the footer nav colors */
+body[data-md-color-primary="blue"] .md-footer-meta {
+  background-color: #050A56;
+}
+
+body[data-md-color-primary="blue"] .md-footer-nav {
+  background-color: #F2F2F2;
+}
+
+/* fix code block tab hover */
+html .md-typeset .superfences-tabs > label:hover {
+  color: #0083CB;
+}
+
+/* align nav colors with style guide grey */
+.md-typeset h1,
+.md-footer-nav,
+.md-footer-nav__direction {
+  color: #888888;
+}
+
+.md-footer-nav__direction {
+  font-style: italic;
+}
+
+.md-header-nav__title,
+.md-header-nav__prefix {
+  color: #F2F2F2;
+  font-size: 1.2rem;
+}
+
+body .md-nav {
+  color: rgba(5, 10, 86, 0.87); /* #050A56 at 87% alpha */
+}
+
+/* specific style for the header version */
+.md-header-nav__version {
+  color: rgba(242, 242, 242, 0.7);
+  font-size: 0.9rem;
+  padding-left: 0.3rem;
+}
+
+/* increase contrast in blue footer */
+.md-footer-copyright {
+  color: #F2F2F2;
+  font-size: 0.7rem;
+}
+
+.md-footer-copyright__highlight,
+html .md-footer-meta.md-typeset a {
+  color: #F2F2F2;
+}
+
+/* change title style in the copyright */
+.md-footer-copyright__title {
+  font-weight: bold;
+  padding-top: 2.7rem;
+}
+
+.md-footer-copyright__company {
+  font-size: 1.2rem;
+  padding-bottom: 0.75rem;
+}
+
+.md-footer-copyright__address__title {
+  font-weight: bold;
+}
+
+.md-footer-copyright__address {
+  font-size: 0.7rem;
+  padding-bottom: 1.5rem;
+}
+
+.md-footer-social__title {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #F2F2F2;
+  padding-top: 2.7rem;
+}
+
+.md-footer-social {
+  padding: 0.4rem 0;
+  text-align: right;
+}
+
+.md-footer-social__link.fa {
+  font-size: 1rem;
+}
+
+/* align text color with style guide */
+body, input {
+  color: #333333;
+}
+
+/* align headings with style guide */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: #333333;
+}
+
+.md-typeset h1 {
+  font-size: 1.8rem;
+}
+
+.md-typeset h2 {
+  font-size: 1.35rem;
+}
+
+.md-typeset h3 {
+  font-size: 0.95rem;
+}
+
+.md-typeset h4 {
+  font-weight: 400;
+}
+
+.md-typeset h5 {
+  font-size: 0.7rem;
+  text-transform: none;
+  font-weight: 700;
+}
+
+.md-typeset h6 {
+}
+
+/* fix search result clipping */
+.md-search-result__teaser {
+  max-height: 1.8rem;
+}
+
+{% endif %}
+
+/* keep the font settings last as they were previously in the html templates */
+body, input {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+pre, code, kbd {
+  font-family: Courier, monospace;
+}
+h1, h2, h3, h4, h5, h6, .md-header-nav__title, .md-footer-copyright__company, .md-hero__inner {
+  font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
