@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.1.4
+-----
+
+- |fixed| sdist and wheel packaging.
+
+0.1.3
+-----
+
+- |fixed| TravisCI deployment.
+
 0.1.2
 -----
 
