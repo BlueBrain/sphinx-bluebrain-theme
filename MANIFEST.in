@@ -6,5 +6,6 @@ prune tests
 prune doc
 
 exclude tox.ini translate_templates.py MANIFEST.in
+exclude .gitignore .gitmodules .readthedocs.yml .travis.yml
 
 global-exclude *.py[co] .DS_Store
