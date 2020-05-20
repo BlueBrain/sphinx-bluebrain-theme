@@ -15,6 +15,7 @@ deploy:
   on:
     tags: true
     condition: "$TRAVIS_PYTHON_VERSION == 3.6"
+  skip_cleanup: true
   before_deploy: python translate_templates.py
   username: bbp.opensource
   password:
