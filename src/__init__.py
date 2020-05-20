@@ -3,7 +3,6 @@
 from os import path
 
 from sphinx_bluebrain_theme import utils
-from sphinx_bluebrain_theme.version import version as __version__
 
 
 def setup(app):
