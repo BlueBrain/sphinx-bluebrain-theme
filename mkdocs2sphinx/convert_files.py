@@ -2,7 +2,6 @@
 
 import io
 import os
-import re
 import shutil
 from collections import defaultdict
 
@@ -39,14 +38,10 @@ def do_replacements(src_text, replacement_map, stats):
         str: The results of all replacements.
     """
     for fnd, rep in replacement_map.items():
-        if isinstance(fnd, re._pattern_type):  # pylint: disable=protected-access
-            stats[fnd] += len(re.findall(fnd, src_text))
-            src_text = re.sub(fnd, rep, src_text)
-        elif isinstance(fnd, str):
-            count_pre = src_text.count(fnd)
-            # this is fragile since it relies on *exact* matches
-            src_text = src_text.replace(fnd, rep)
-            stats[fnd] += count_pre
+        count_pre = src_text.count(fnd)
+        # this is fragile since it relies on *exact* matches
+        src_text = src_text.replace(fnd, rep)
+        stats[fnd] += count_pre
 
     return src_text
 

@@ -29,17 +29,11 @@ def add_autodoc_override(app):
             sea.ExceptionDocumenter,
             sea.DataDocumenter,
             sea.FunctionDocumenter,
+            sea.DecoratorDocumenter,
             sea.MethodDocumenter,
             sea.AttributeDocumenter,
             sea.InstanceAttributeDocumenter,
         ]
-
-        # Decorator documenter is not available sphinx < 2.0, which means it is not
-        # available for python 2.
-        try:
-            documenters.insert(5, sea.DecoratorDocumenter)
-        except AttributeError:
-            pass
 
         for d in documenters:
             app.add_directive(
