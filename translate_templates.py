@@ -18,13 +18,13 @@ def _ignore_on_copy(directory, contents):  # pylint: disable=unused-argument
     Returns:
         list: A list of files to be ignored.
     """
-    if directory.endswith(osp.join("", "material")):
+    if osp.basename(directory) == "material":
         return ["mkdocs_theme.yml", "main.html", "404.html"]
 
-    if directory.endswith(osp.join("", "partials")):
+    if osp.basename(directory) == "partials":
         return ["integrations"]
 
-    if directory.endswith(osp.join("", "images")):
+    if osp.basename(directory) == "images":
         return ["favicon.png"]
 
     return []
