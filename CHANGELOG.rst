@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.2.0
+-----
+
+- |removed| Python 2 support.
+- |added| Python 3.7 and 3.8 testing.
+
+0.1.5
+-----
+
+- |fixed| package release on TravisCI.
+
 0.1.4
 -----
 
