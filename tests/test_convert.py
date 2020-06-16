@@ -2,7 +2,6 @@
 Test for the conversion of files.
 """
 from collections import defaultdict
-from pathlib import Path
 
 # pylint: disable=import-error
 from nose import tools as nt
