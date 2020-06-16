@@ -95,7 +95,7 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
     """
     stats = defaultdict(int)
 
-    for fl in path.glob("**/*"):
+    for fl in path.rglob("*"):
 
         if not fl.is_file():
             continue
