@@ -115,6 +115,6 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
         if fl.name not in files_no_license:
             file_contents = prepend_license(license_text, file_contents, fl.suffix)
 
-        fl.write_text(file_contents)
+        fl.write_text(file_contents, encoding="utf-8")
 
     return stats
