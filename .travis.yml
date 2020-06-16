@@ -11,13 +11,13 @@ branches:
   - master
   - /^v\d+\.\d+\.\d+(-\S+)?$/
 
+before_deploy: python translate_templates.py
 deploy:
   provider: pypi
   on:
     tags: true
     condition: "$TRAVIS_PYTHON_VERSION == 3.6"
   skip_cleanup: true
-  before_deploy: python translate_templates.py
   username: bbp.opensource
   password:
     secure: "rcfvc+KA73kghyP7WpVtchTU+ovOPop2gdXuem2r9DGYawJdimM1s94JSuObg9GAnk0BnFpolaEMrVC+Bqpg5VsCH9lEMw6Ydfsw5320Moc32GLq/eiPhYxJM0oSZo0kk3iQdhDM5fLVgfaZY2KXOXyS6cmYdS3Wl/r9zoTSyU4A1/vagOzmnKIYzBNpz8pxRw5oW0ma9PRNjP9uKZBFoBIkAOWqF6pJxoX0C+QeT7+E3zRHjSa0DHIdN9Y1sipTRSm1f0sHihwXmNIGdhJbM90Tn8eLMJ4c8Q0BZ9q5ZbGAjY+wKJtLZYXtt9hOhZ0n8k+HcjyYYC/mn1ANTIUESwzr3SFg1fszs4kVm8akIs8xWoLLSFy7HbFJBmk8gX6WkhxwJqKGM1KUl5S+Lt2MPmhoHLH3JLV8HTS+QCCvcKxzW5VvbnbeOyrja2mu7WwKck19biLAqKmDxc3LD6+VmpZOGqFuEmyR7LzEQ6MLOd1pn7GWbHVAQpJjAIt8uC8xCKSagnAQMUTFmGYQQPRFFgyrTyCt/P00Uv2g4jc3XK/Lp+aI/pgj3d73ZrWHWnPWKKJTtK8OC0dHuUDBGV96Yqjm3OACTQQkBci8kxnV95TgYLalKUPpW6pRe06w/SWeXcrR5y3aAEiaqnrFoYCU5lKGFpqMH38Qwhdmtgp8gCY="
