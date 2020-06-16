@@ -86,7 +86,7 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
     """Converts the files contained within the path given to be compatible with Sphinx.
 
     Args:
-        path (str): The path to the directory containing files to be converted.
+        path (Path): The path to the directory containing files to be converted.
         block_list (list): A list of block names which will be cleared.
         replacement_map (dict): A dictionary containing strings to find
             (the keys) and the strings to replace them with (the values).
