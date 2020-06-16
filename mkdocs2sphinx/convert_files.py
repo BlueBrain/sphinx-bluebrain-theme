@@ -44,12 +44,12 @@ def do_replacements(src_text, replacement_map, stats):
     return src_text
 
 
-def prepend_license(license_text, src_text, filepath):
+def prepend_license(license_text, src_text, file_extension):
     """Prepend a license notice to the file commented out based on the extension.
 
     Args:
         src_text (str): The text which will have the license prepended.
-        filepath (Path): The path to the file including extension.
+        file_extension (str): The relevant file extension.
 
     Returns:
         str: The full text of the prepended file.
@@ -61,8 +61,7 @@ def prepend_license(license_text, src_text, filepath):
         ".js": ("/*", " * ", " */"),
     }
 
-    # get the file extension
-    ext = filepath.suffix.lower()
+    ext = file_extension.lower()
 
     if ext not in comment_symbols:
         return src_text
@@ -109,17 +108,13 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
             continue
 
         # we need to read and then write back to this file
-        with open(fl, "r+", encoding="utf-8") as write_file:
-            file_contents = write_file.read()
-            file_contents = remove_blocks(file_contents, block_list)
-            file_contents = do_replacements(file_contents, replacement_map, stats)
+        file_contents = fl.read_text(encoding="utf-8")
+        file_contents = remove_blocks(file_contents, block_list)
+        file_contents = do_replacements(file_contents, replacement_map, stats)
 
-            if fl.name not in files_no_license:
-                file_contents = prepend_license(license_text, file_contents, fl)
+        if fl.name not in files_no_license:
+            file_contents = prepend_license(license_text, file_contents, fl.suffix)
 
-            # reset to start of file, write, and then truncate
-            write_file.seek(0)
-            write_file.write(file_contents)
-            write_file.truncate()
+        fl.write_text(file_contents)
 
     return stats
