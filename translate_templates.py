@@ -1,7 +1,6 @@
 """This module will translate the mkdocs material theme to a Sphinx theme."""
 
 import os
-import os.path as osp
 from pathlib import Path
 
 from distutils import dir_util  # pylint: disable= no-name-in-module
@@ -13,19 +12,21 @@ def _ignore_on_copy(directory, contents):  # pylint: disable=unused-argument
     """Provides list of items to be ignored.
 
     Args:
-        directory (str): The path to the current directory.
+        directory (Path): The path to the current directory.
         contents (list): A list of files in the current directory.
 
     Returns:
         list: A list of files to be ignored.
     """
-    if osp.basename(directory) == "material":
+    # shutil passes strings, so ensure a Path
+    directory = Path(directory)
+    if directory.name == "material":
         return ["mkdocs_theme.yml", "main.html", "404.html"]
 
-    if osp.basename(directory) == "partials":
+    if directory.name == "partials":
         return ["integrations"]
 
-    if osp.basename(directory) == "images":
+    if directory.name == "images":
         return ["favicon.png"]
 
     return []
@@ -33,12 +34,12 @@ def _ignore_on_copy(directory, contents):  # pylint: disable=unused-argument
 
 if __name__ == "__main__":
     # set some paths
-    PWD_PATH = osp.dirname(osp.abspath(__file__))
+    PWD_PATH = Path(__file__).parent
 
     # this assumes that the mkdocs material theme is in the same directory
     # as this file's parent directory
-    SRC_PATH = osp.join(PWD_PATH, "mkdocs-material", "material")
-    OUT_PATH = osp.join(PWD_PATH, "sphinx_bluebrain_theme")
+    SRC_PATH = PWD_PATH / "mkdocs-material" / "material"
+    OUT_PATH = PWD_PATH / "sphinx_bluebrain_theme"
     copy_source(SRC_PATH, OUT_PATH, _ignore_on_copy)
 
     # convert files from mkdocs to Sphinx
@@ -47,12 +48,15 @@ if __name__ == "__main__":
         # do general replacements
         '{% include "assets/': '{% include "static/'
     }
-    LICENSE_PATH = Path(PWD_PATH) / "mkdocs-material" / "LICENSE"
+
+    # ensure mkdocs-material licenses are included
+    LICENSE_PATH = PWD_PATH / "mkdocs-material" / "LICENSE"
     LICENSE_TEXT = LICENSE_PATH.read_text().splitlines()
     FILES_NOT_NEEDING_LICENSE = {
         "font-awesome.css",  # license information already included
         "material-icons.css",  # license information already included
     }
+
     STATS = convert_files(
         OUT_PATH, BLOCK_LIST, REPLACEMENT_MAP, LICENSE_TEXT, FILES_NOT_NEEDING_LICENSE
     )
@@ -66,7 +70,9 @@ if __name__ == "__main__":
         print("{0}{1}: {2}{3}".format(colour, k, v, end_colour))
 
     # copy some additional files into the theme
-    dir_util.copy_tree(osp.join(PWD_PATH, "src"), OUT_PATH)
+    # copy_tree requires strings not paths, we use it here
+    # as it allows directories to be merged (shutil.copytree does not)
+    dir_util.copy_tree(str(PWD_PATH / "src"), str(OUT_PATH))
 
     # sphinx expects a 'static' directory so rename the mkdocs-material one
-    os.rename(osp.join(OUT_PATH, "assets"), osp.join(OUT_PATH, "static"))
+    os.rename(OUT_PATH / "assets", OUT_PATH / "static")

@@ -1,9 +1,9 @@
 """Utilities for the translation of file contents from mkdocs-material to Sphinx."""
 
-import io
 import os
 import shutil
 from collections import defaultdict
+from pathlib import Path
 
 from mkdocs2sphinx.clear_blocks import remove_blocks
 
@@ -12,12 +12,12 @@ def copy_source(source_path, output_path, ignore_on_copy):
     """Copies a directory from one location to another, removing existing if necessary.
 
     Args:
-        source_path (str): A path to the directory to be copied.
-        output_path (str): A path to the directory where the source will be copied.
+        source_path (Path): A path to the directory to be copied.
+        output_path (Path): A path to the directory where the source will be copied.
         ignore_on_copy (callable): A callable returning the names of files
             or directories to be ignored during the copy.
     """
-    if os.path.isdir(output_path):
+    if output_path.is_dir():
         shutil.rmtree(output_path)
 
     shutil.copytree(source_path, output_path, ignore=ignore_on_copy)
@@ -46,12 +46,12 @@ def do_replacements(src_text, replacement_map, stats):
     return src_text
 
 
-def prepend_license(license_text, src_text, filename):
+def prepend_license(license_text, src_text, filepath):
     """Prepend a license notice to the file commented out based on the extension.
 
     Args:
         src_text (str): The text which will have the license prepended.
-        filename (str): The name of the file including extension.
+        filepath (Path): The path to the file including extension.
 
     Returns:
         str: The full text of the prepended file.
@@ -64,8 +64,7 @@ def prepend_license(license_text, src_text, filename):
     }
 
     # get the file extension
-    _, ext = os.path.splitext(filename)
-    ext = ext.lower()
+    ext = filepath.suffix.lower()
 
     if ext not in comment_symbols:
         return src_text
@@ -101,21 +100,23 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
 
     for root, dirs, files in os.walk(path):  # pylint: disable=unused-variable
         for fl in files:
+            # ensure a Path object
+            fl = Path(root) / fl
+
             # get the file extension
-            _, ext = os.path.splitext(fl)
-            ext = ext.lower()
+            ext = fl.suffix.lower()
 
             # only converting HTML files at the moment
             if ext not in {".html", ".css", ".js"} and not ext.endswith("_t"):
                 continue
 
             # we need to read and then write back to this file
-            with io.open(os.path.join(root, fl), "r+", encoding="utf-8") as write_file:
+            with open(fl, "r+", encoding="utf-8") as write_file:
                 file_contents = write_file.read()
                 file_contents = remove_blocks(file_contents, block_list)
                 file_contents = do_replacements(file_contents, replacement_map, stats)
 
-                if fl not in files_no_license:
+                if fl.name not in files_no_license:
                     file_contents = prepend_license(license_text, file_contents, fl)
 
                 # reset to start of file, write, and then truncate
