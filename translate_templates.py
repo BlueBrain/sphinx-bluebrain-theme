@@ -1,6 +1,5 @@
 """This module will translate the mkdocs material theme to a Sphinx theme."""
 
-import os
 from pathlib import Path
 
 from distutils import dir_util  # pylint: disable= no-name-in-module
@@ -75,4 +74,4 @@ if __name__ == "__main__":
     dir_util.copy_tree(str(PWD_PATH / "src"), str(OUT_PATH))
 
     # sphinx expects a 'static' directory so rename the mkdocs-material one
-    os.rename(OUT_PATH / "assets", OUT_PATH / "static")
+    (OUT_PATH / "assets").rename(OUT_PATH / "static")

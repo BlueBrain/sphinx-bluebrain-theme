@@ -2,6 +2,7 @@
 Test for the conversion of files.
 """
 from collections import defaultdict
+from pathlib import Path
 
 # pylint: disable=import-error
 from nose import tools as nt
@@ -39,9 +40,9 @@ def test_prepend_license():
 text that will be used to check licenses."""
 
     # first test an unknown file type
-    lictext = prepend_license((lic,), text, "hello.py")
+    lictext = prepend_license((lic,), text, Path("hello.py"))
     nt.assert_equal(lictext, text)
 
     # test css
-    lictext = prepend_license((lic,), text, "hello.css")
+    lictext = prepend_license((lic,), text, Path("hello.css"))
     nt.assert_true(lictext.startswith("/*\n * LICENSE"))

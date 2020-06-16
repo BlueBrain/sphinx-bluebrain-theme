@@ -1,9 +1,7 @@
 """Utilities for the translation of file contents from mkdocs-material to Sphinx."""
 
-import os
 import shutil
 from collections import defaultdict
-from pathlib import Path
 
 from mkdocs2sphinx.clear_blocks import remove_blocks
 
@@ -98,30 +96,30 @@ def convert_files(path, block_list, replacement_map, license_text, files_no_lice
     """
     stats = defaultdict(int)
 
-    for root, dirs, files in os.walk(path):  # pylint: disable=unused-variable
-        for fl in files:
-            # ensure a Path object
-            fl = Path(root) / fl
+    for fl in path.glob("**/*"):
 
-            # get the file extension
-            ext = fl.suffix.lower()
+        if not fl.is_file():
+            continue
 
-            # only converting HTML files at the moment
-            if ext not in {".html", ".css", ".js"} and not ext.endswith("_t"):
-                continue
+        # get the file extension
+        ext = fl.suffix.lower()
 
-            # we need to read and then write back to this file
-            with open(fl, "r+", encoding="utf-8") as write_file:
-                file_contents = write_file.read()
-                file_contents = remove_blocks(file_contents, block_list)
-                file_contents = do_replacements(file_contents, replacement_map, stats)
+        # only converting HTML files at the moment
+        if ext not in {".html", ".css", ".js"} and not ext.endswith("_t"):
+            continue
 
-                if fl.name not in files_no_license:
-                    file_contents = prepend_license(license_text, file_contents, fl)
+        # we need to read and then write back to this file
+        with open(fl, "r+", encoding="utf-8") as write_file:
+            file_contents = write_file.read()
+            file_contents = remove_blocks(file_contents, block_list)
+            file_contents = do_replacements(file_contents, replacement_map, stats)
 
-                # reset to start of file, write, and then truncate
-                write_file.seek(0)
-                write_file.write(file_contents)
-                write_file.truncate()
+            if fl.name not in files_no_license:
+                file_contents = prepend_license(license_text, file_contents, fl)
+
+            # reset to start of file, write, and then truncate
+            write_file.seek(0)
+            write_file.write(file_contents)
+            write_file.truncate()
 
     return stats
