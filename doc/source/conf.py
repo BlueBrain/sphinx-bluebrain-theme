@@ -67,7 +67,8 @@ def setup(app):
     def override_regression_test_version(app, pagename, templatename, context, doctree):
         """Override the version of regression test pages to prevent failure during a new release."""
         if pagename in REGRESSION_TEST_PAGENAMES:
-            context["version"] = "regression"
+            context["version"] = "REGRESSION-TEST"
+            context["sphinx_version"] = "REGRESSION-TEST"
 
     # pylint: disable=unused-argument
     def override_with_rtd_version(app, pagename, templatename, context, doctree):
