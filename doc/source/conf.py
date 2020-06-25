@@ -23,10 +23,11 @@ project = u"sphinx-bluebrain-theme"
 
 # read the docs does not like using the cloned repo as the theme
 # for the documentation build so the version number will be wrong
-on_rtd = os.environ.get('READTHEDOCS') == 'True'
+on_rtd = os.environ.get("READTHEDOCS") == "True"
 if on_rtd:
     # note: delay import so we only need setuptools_scm on Read the Docs
-    from setuptools_scm import get_version
+    from setuptools_scm import get_version  # pylint: disable=import-error
+
     version = get_version(root="../..", relative_to=__file__)
 else:
     version = get_distribution("sphinx-bluebrain-theme").version
