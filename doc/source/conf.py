@@ -28,7 +28,9 @@ if on_rtd:
     # note: delay import so we only need setuptools_scm on Read the Docs
     from setuptools_scm import get_version  # pylint: disable=import-error
 
-    version = get_version(root="../..", relative_to=__file__)
+    version = get_version(
+        root="../..", relative_to=__file__, local_scheme="no-local-version"
+    )
 else:
     version = get_distribution("sphinx-bluebrain-theme").version
 
