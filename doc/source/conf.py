@@ -12,7 +12,6 @@
 
 import os
 from pkg_resources import get_distribution
-from setuptools_scm import get_version
 
 # these pages will have the version overwritten so that it doesn't fail
 # when a new version is released.
@@ -26,6 +25,8 @@ project = u"sphinx-bluebrain-theme"
 # for the documentation build so the version number will be wrong
 on_rtd = os.environ.get('READTHEDOCS') == 'True'
 if on_rtd:
+    # note: delay import so we only need setuptools_scm on Read the Docs
+    from setuptools_scm import get_version
     version = get_version(root="../..", relative_to=__file__)
 else:
     version = get_distribution("sphinx-bluebrain-theme").version
