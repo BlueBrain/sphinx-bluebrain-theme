@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import os
 from pkg_resources import get_distribution
 
 # these pages will have the version overwritten so that it doesn't fail
@@ -19,7 +20,20 @@ REGRESSION_TEST_PAGENAMES = {"regression"}
 # -- Project information -----------------------------------------------------
 
 project = u"sphinx-bluebrain-theme"
-version = get_distribution("sphinx-bluebrain-theme").version
+
+# read the docs does not like using the cloned repo as the theme
+# for the documentation build so the version number will be wrong
+on_rtd = os.environ.get("READTHEDOCS") == "True"
+if on_rtd:
+    # note: delay import so we only need setuptools_scm on Read the Docs
+    from setuptools_scm import get_version  # pylint: disable=import-error
+
+    version = get_version(
+        root="../..", relative_to=__file__, local_scheme="no-local-version"
+    )
+else:
+    version = get_distribution("sphinx-bluebrain-theme").version
+
 release = version
 
 # -- General configuration ---------------------------------------------------
@@ -70,17 +84,7 @@ def setup(app):
             context["version"] = "REGRESSION-TEST"
             context["sphinx_version"] = "REGRESSION-TEST"
 
-    # pylint: disable=unused-argument
-    def override_with_rtd_version(app, pagename, templatename, context, doctree):
-        """Override the version on readthedocs.
-
-        Readthedocs places the version in an injected box, so we can remove it.
-        """
-        if context.get("READTHEDOCS", False):
-            context["version"] = context["current_version"]
-
     # add custom stylesheet
     app.add_css_file("custom.css")
 
     app.connect("html-page-context", override_regression_test_version)
-    app.connect("html-page-context", override_with_rtd_version)
