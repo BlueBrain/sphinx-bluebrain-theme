@@ -76,7 +76,7 @@ def get_metadata_from_json(json_path):
 
     # contributors is a special case where they might be
     # specified in the conf.py so don't raise an error
-    output["contributors"] = metadata.get("contributors", None)
+    output["contributors"] = ",".join(metadata.get("contributors", ""))
 
     return output
 
