@@ -93,8 +93,8 @@ def test_get_metadata_from_json():
         # get the metadata
         md = metadata.get_metadata_from_json(fd.name)
 
-        # check contributors is None
-        nt.assert_is_none(md["contributors"])
+        # check contributors is blank
+        nt.eq_(md["contributors"], "")
         del md["contributors"]
 
         # check all values are the same as their keys
