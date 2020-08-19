@@ -253,13 +253,9 @@ dt[id] .headerlink {
 /* ensure offset for anchors added in sphinx which are not headings */
 span[id]:empty:target::before {
   display: block;
-  margin-top: -3.45rem;
-  padding-top: 3.45rem;
+  margin-top: -1.45rem;
+  padding-top: 0.45rem;
   content: "";
-}
-
-span[id]:empty {
-  display: none;
 }
 
 /* reinstate underline for accelerator keys */
