@@ -10,7 +10,7 @@ class AutodocDirectiveOverride(AutodocDirective):
 
     def run(self):
         """Wrap the autodoc output in a div with autodoc class."""
-        result = super(AutodocDirectiveOverride, self).run()
+        result = super().run()
         container = nodes.container()
         container["classes"].append("autodoc-output")
         container += result

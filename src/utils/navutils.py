@@ -62,7 +62,7 @@ class Nav(NavBase):
 
     def __init__(self):
         """Initialize the base class and Nav specific attributes."""
-        super(Nav, self).__init__()
+        super().__init__()
         self.homepage = None
         self.pages = []
         self.title = "Base Nav"
@@ -83,7 +83,7 @@ class Page(NavBase):
 
     def __init__(self):
         """Initialize the base class and Page specific attributes."""
-        super(Page, self).__init__()
+        super().__init__()
         self.content = None
         self.toc = None
         self.meta = None
