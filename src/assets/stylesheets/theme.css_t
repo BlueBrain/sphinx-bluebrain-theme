@@ -523,3 +523,9 @@ pre, code, kbd {
 h1, h2, h3, h4, h5, h6, .md-header-nav__title, .md-footer-copyright__company, .md-hero__inner {
   font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.documentation-homepage-icon {
+  font-size: 25px;
+  line-height: 1;
+  margin: .2rem 0;
+  padding: .4rem 0;
+}
