@@ -139,7 +139,6 @@ def build_config(con):
         "site_url": con["theme_logo_url"] or con["pathto"](con["master_doc"]),
         "site_author": con["theme_site_author"],
         "site_description": con["theme_site_description"],
-        "documentation_homepage_url": con["theme_homepage_url"],
         "plugins": {"search"},  # need to include for search bar to show
     }
 
