@@ -55,7 +55,7 @@ class CodeTab(CodeTabMixin, CodeBlock):
 
     def run(self):
         """Run the CodeTab including mixin."""
-        inner = super(CodeTab, self).run()
+        inner = super().run()
         return self.run_mixin(inner)
 
 
@@ -66,7 +66,7 @@ class LiteralTab(CodeTabMixin, LiteralInclude):
 
     def run(self):
         """Run the LiteralTab including mixin."""
-        inner = super(LiteralTab, self).run()
+        inner = super().run()
         return self.run_mixin(inner)
 
 
