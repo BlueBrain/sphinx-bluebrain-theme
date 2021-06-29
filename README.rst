@@ -56,6 +56,14 @@ Sphinx BlueBrain Theme is built through a combination of text replacement rules,
 HTML template overrides, a small amount of additional CSS and Javascript, and
 a python module which injects additional required context.
 
+Acknowledgement
+---------------
+
+The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
+
+Copyright (c) 2020-2021 Blue Brain Project/EPFL
+
+
 .. |build_status| image:: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme.svg?branch=master
                      :target: https://travis-ci.com/BlueBrain/sphinx-bluebrain-theme
                      :alt: Build Status
