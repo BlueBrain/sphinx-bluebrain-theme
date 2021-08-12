@@ -96,9 +96,7 @@ def test_build_extra_empty():
     """Build the extra context variable with no entries."""
     context = defaultdict(lambda: None)
     extra = inject_context.build_extra(context, None)
-
-    for e in extra:
-        yield nt.assert_is_none, extra[e]
+    return extra
 
 
 def test_build_extra():
