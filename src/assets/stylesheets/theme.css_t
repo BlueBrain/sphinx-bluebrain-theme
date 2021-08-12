@@ -520,6 +520,10 @@ body, input {
 pre, code, kbd {
   font-family: Courier, monospace;
 }
+/* if a monospace family font has ligatures, don't use them in code snippets */
+pre, code {
+  font-variant-ligatures: none;
+}
 h1, h2, h3, h4, h5, h6, .md-header-nav__title, .md-footer-copyright__company, .md-hero__inner {
   font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
