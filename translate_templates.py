@@ -66,7 +66,7 @@ if __name__ == "__main__":
     for k, v in STATS.items():
         colour = "\033[31m" if v == 0 else "\033[32m"
         end_colour = "\033[0m"
-        print("{0}{1}: {2}{3}".format(colour, k, v, end_colour))
+        print(f"{colour}{k}: {v}{end_colour}")
 
     # copy some additional files into the theme
     # copy_tree requires strings not paths, we use it here

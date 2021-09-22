@@ -71,7 +71,7 @@ class Nav(NavBase):
         """Search for, and set, the homepage."""
         # homepage should be in the top level of pages
         for page in self.children:
-            if page.url == homepage_name + ".html" or page.url == "#":
+            if page.url in (homepage_name + ".html", "#"):
                 page.is_homepage = True
                 return
 

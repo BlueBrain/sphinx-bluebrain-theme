@@ -45,7 +45,7 @@ def test_write_metadata_files():
         nt.assert_true(os.path.isfile(md_file))
         nt.assert_true(os.path.isfile(json_file))
 
-        with open(md_file) as file_:
+        with open(md_file, encoding="utf8") as file_:
             content = file_.read()
             expect = """---
 name: test-data
@@ -53,7 +53,7 @@ name: test-data
 """
             nt.eq_(content, expect)
 
-        with open(json_file) as file_:
+        with open(json_file, encoding="utf8") as file_:
             content = file_.read()
             expect = """{"name": "test-data"}"""
             nt.eq_(content, expect)

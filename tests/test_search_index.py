@@ -12,7 +12,7 @@ def test_index_entry():
     """
     Test the construction of the list of blocks from text.
     """
-    text_list = (u"Line one \u00B6.", "Line two.   ")
+    text_list = ("Line one \u00B6.", "Line two.   ")
     entry = search_builder.IndexEntry()
     entry.text_list.extend(text_list)
 
@@ -25,7 +25,7 @@ def test_index_as_dict():
     """
     Test the returned dictionary representation.
     """
-    text_list = (u"Line one \u00B6.", "Line two.   ")
+    text_list = ("Line one \u00B6.", "Line two.   ")
     entry = search_builder.IndexEntry(location="/", title="test")
     entry.text_list.extend(text_list)
 
