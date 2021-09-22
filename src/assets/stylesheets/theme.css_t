@@ -533,3 +533,17 @@ h1, h2, h3, h4, h5, h6, .md-header-nav__title, .md-footer-copyright__company, .m
   margin: .2rem 0;
   padding: .4rem 0;
 }
+
+@media only screen and (max-width: 76.1875em) {
+  /* leave space for right side-bar so they do not overlap */
+  .md-content__inner {
+    margin-right: 13rem;
+  }
+}
+
+@media only screen and (max-width: 59.9375em) {
+  /* restore to the default margin for small devices */
+  .md-content__inner {
+    margin-right: 0.8rem;
+  }
+}
