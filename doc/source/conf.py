@@ -19,7 +19,7 @@ REGRESSION_TEST_PAGENAMES = {"regression"}
 
 # -- Project information -----------------------------------------------------
 
-project = u"sphinx-bluebrain-theme"
+project = "sphinx-bluebrain-theme"
 
 # read the docs does not like using the cloned repo as the theme
 # for the documentation build so the version number will be wrong

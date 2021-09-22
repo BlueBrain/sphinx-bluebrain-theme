@@ -19,7 +19,7 @@ class CodeTabMixin:
         # build the tab_id
         group_name = self.env.tab_group_name
         tab_id_int = self.env.tab_group_tab_id
-        tab_id = "%s_%s" % (group_name, tab_id_int)
+        tab_id = f"{group_name}_{tab_id_int}"
 
         node = nodes.container()
         node["classes"].append("superfences-content")
@@ -82,7 +82,7 @@ def visit_tab_node(self, node):
 
 def depart_tab_node(self, node):
     """Close the tab html."""
-    self.body.append("</%s>" % node.tagname)
+    self.body.append(f"</{node.tagname}>")
 
 
 class TabGroup(SphinxDirective):
@@ -98,7 +98,7 @@ class TabGroup(SphinxDirective):
         text = "\n".join(self.content)
 
         self.env.tab_group_id = getattr(self.env, "tab_group_id", 0) + 1
-        self.env.tab_group_name = "__tab_%s" % self.env.tab_group_id
+        self.env.tab_group_name = f"__tab_{self.env.tab_group_id}"
         self.env.tab_group_tab_id = 0
         node = nodes.container(text)
         node["classes"].append("superfences-tabs")

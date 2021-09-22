@@ -42,14 +42,14 @@ def add_to_path(temp_path):
 def write_metadata(metadata, output_dir):
     """Write a metadata dict to a directory."""
     metadata_path = os.path.join(output_dir, "metadata.md")
-    with open(metadata_path, "w") as fd:
+    with open(metadata_path, "w", encoding="utf8") as fd:
         fd.write("---\n")
         for k, v in metadata.items():
             fd.write(str(k) + ": " + str(v) + "\n")
         fd.write("---\n")
 
     metadata_json_path = os.path.join(output_dir, "metadata.json")
-    with open(metadata_json_path, "w") as fd:
+    with open(metadata_json_path, "w", encoding="utf8") as fd:
         fd.write(json.dumps(metadata))
 
     return metadata_path
@@ -60,7 +60,7 @@ def get_metadata_from_json(json_path):
 
     The file must follow the standard structure of package.json files.
     """
-    with open(json_path) as fd:
+    with open(json_path, encoding="utf8") as fd:
         metadata = json.load(fd)
 
     output = {
@@ -122,7 +122,7 @@ def get_metadata_from_distribution(distribution_name):
             break
     else:
         raise FileNotFoundError(
-            "package has no metadata file with name: %s" % METADATA_NAMES
+            f"package has no metadata file with name: {METADATA_NAMES}"
         )
 
     for mdl in dist.get_metadata_lines(metadata_name):
@@ -187,12 +187,12 @@ def build_metadata(metadata_file=None, metadata_overrides=None, distribution_nam
     elif metadata_file:
         if not os.path.isfile(metadata_file):
             raise FileNotFoundError(
-                "%s: specified metadata_file does not exist" % metadata_file
+                f"{metadata_file}: specified metadata_file does not exist"
             )
 
         _, ext = os.path.splitext(metadata_file)
         if ext != ".json":
-            raise ValueError("%s: expected a .json file" % metadata_file)
+            raise ValueError(f"{metadata_file}: expected a .json file")
 
         metadata_package = get_metadata_from_json(metadata_file)
         metadata.update(metadata_package)
@@ -253,7 +253,7 @@ def write_metadata_sphinx(app, exception):  # pylint: disable=unused-argument
             if not os.path.isabs(repo_path):
                 repo_path = os.path.abspath(os.path.join(app.confdir, repo_path))
             if not (os.path.isdir(repo_path) or os.path.isfile(repo_path)):
-                raise IOError("%s: not a git repository" % repo_path)
+                raise IOError(f"{repo_path}: not a git repository")
             clone_path = os.path.dirname(repo_path)
 
         # check if it is a git repo
