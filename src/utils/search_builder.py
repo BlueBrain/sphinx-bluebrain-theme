@@ -33,7 +33,7 @@ class IndexEntry:
         of text found in the page/section of the entry.
         """
         text = "\n".join(self.text_list)
-        text = text.replace(u"\u00B6", " ")  # remove the pilcrow symbol
+        text = text.replace("\u00B6", " ")  # remove the pilcrow symbol
         text = self.MULTI_SPACE_REGEX.sub(" ", text).strip()
 
         return text

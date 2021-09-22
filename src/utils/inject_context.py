@@ -212,7 +212,6 @@ def bbp_context_cleanup(context):
             "the default Blue Brain project copyright will be used."
         )
 
-    context["config"]["copyright"] = (
-        "&copy; Blue Brain Project/EPFL 2005-%s. All rights reserved."
-        % datetime.datetime.now().year
-    )
+    context["config"][
+        "copyright"
+    ] = f"&copy; Blue Brain Project/EPFL 2005-{datetime.datetime.now().year}. All rights reserved."
