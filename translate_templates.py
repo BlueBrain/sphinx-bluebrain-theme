@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     # ensure mkdocs-material licenses are included
     LICENSE_PATH = PWD_PATH / "mkdocs-material" / "LICENSE"
-    LICENSE_TEXT = LICENSE_PATH.read_text().splitlines()
+    LICENSE_TEXT = LICENSE_PATH.read_text(encoding="utf8").splitlines()
     FILES_NOT_NEEDING_LICENSE = {
         "font-awesome.css",  # license information already included
         "material-icons.css",  # license information already included
