@@ -1,6 +1,26 @@
 Changelog
 =========
 
+0.2.6
+-----
+
+- |added| flag to disable version check.
+
+0.2.5
+-----
+
+- |fixed| avoid overlapping content and right sidebar.
+
+0.2.4
+-----
+
+- |added| home button link.
+
+0.2.3
+-----
+
+- |fixed| :ref links.
+
 0.2.0
 -----
 
