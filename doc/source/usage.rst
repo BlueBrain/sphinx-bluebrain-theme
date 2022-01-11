@@ -95,6 +95,9 @@ directory containing the ``conf.py``. You may override this by providing the ``r
 value in ``html_theme_options``, it should be a path (relative to the ``conf.py``) to the
 ``.git`` folder of the repository.
 
+You can avoid the version checking when building the documentation using the environmental variable
+`SPHINX_BLUE_BRAIN_THEME_CHECK_VERSIONS=false`
+
 
 Sphinx options
 --------------
