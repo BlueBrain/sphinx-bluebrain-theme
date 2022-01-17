@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2.7
+-----
+
+- |added| move travis ci to github actions.
+
 0.2.6
 -----
 
