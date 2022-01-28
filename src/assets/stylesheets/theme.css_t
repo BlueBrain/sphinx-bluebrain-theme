@@ -224,6 +224,33 @@ dt[id] .headerlink {
   margin-left: 0.625rem;
 }
 
+.md-typeset .admonition.deprecated,
+.md-typeset details.deprecated {
+    border-left-color: #3c3030
+}
+
+[dir=rtl] .md-typeset .admonition.deprecated,
+[dir=rtl] .md-typeset details.deprecated {
+    border-right-color: #3c3030
+}
+
+.md-typeset .admonition.deprecated>.admonition-title,
+.md-typeset .admonition.deprecated>summary,
+.md-typeset details.deprecated>.admonition-title,
+.md-typeset details.deprecated>summary {
+    border-bottom-color: #3c3030;
+    background-color: #b19090;
+}
+
+.md-typeset .admonition.deprecated>.admonition-title:before,
+.md-typeset .admonition.deprecated>summary:before,
+.md-typeset details.deprecated>.admonition-title:before,
+.md-typeset details.deprecated>summary:before {
+    color: #3c3030;
+    content:"\25A3"
+}
+
+
 .sidebar-title {
   font-weight: 700;
 }
