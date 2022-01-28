@@ -235,7 +235,8 @@ dt[id] .headerlink {
 
 .admonition.deprecated > .admonition-title:before {
   color: #3c3030;
-  content:"\25A3"
+  font-family: "FontAwesome";
+  content: "\f187";
 }
 
 .sidebar-title {
