@@ -52,7 +52,10 @@ jobs:
             python setup.py sdist
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@master
+        if: |
+          # release dev versions on PR or stable only when tag on master
+          (github.event_name == 'release' && github.head_ref == 'master') ||
+          (github.event_name == 'pull_request' && github.head_ref != 'master')
         with:
           user: __token__
           password: ${{ secrets.PYPI_PASSWORD }}
-
