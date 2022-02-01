@@ -49,6 +49,6 @@ Continuous Integration (CI)
 2) Test that version and ammend the necessary items on the PR.
 3) Once the pre-release package is working properly, merge the PR to the default branch.
 4) Then you can tag with a release version vX.Y.Z the merged commit and a release version
-will be produced in pypi.
-5) The documentation is [builed](https://readthedocs.org/projects/sphinx-bluebrain-theme/builds/)
-on push to the default branch.
+   will be produced in pypi.
+5) The documentation is `builed <https://readthedocs.org/projects/sphinx-bluebrain-theme/builds>`_
+   on push to the default branch.
