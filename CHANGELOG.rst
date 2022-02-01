@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.2.8
+-----
+
+- |added| admonition deprecated.
+- |removed| useless custom.css.
+
 0.2.7
 -----
 

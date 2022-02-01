@@ -224,6 +224,21 @@ dt[id] .headerlink {
   margin-left: 0.625rem;
 }
 
+.admonition.deprecated {
+  border-left-color: #3c3030
+}
+
+.admonition.deprecated > .admonition-title {
+  border-bottom-color: #3c3030;
+  background-color: #b19090;
+}
+
+.admonition.deprecated > .admonition-title:before {
+  color: #3c3030;
+  font-family: "FontAwesome";
+  content: "\f187";
+}
+
 .sidebar-title {
   font-weight: 700;
 }

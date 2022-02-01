@@ -84,7 +84,4 @@ def setup(app):
             context["version"] = "REGRESSION-TEST"
             context["sphinx_version"] = "REGRESSION-TEST"
 
-    # add custom stylesheet
-    app.add_css_file("custom.css")
-
     app.connect("html-page-context", override_regression_test_version)

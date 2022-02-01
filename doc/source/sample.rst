@@ -272,6 +272,12 @@ Applicable classnames are shown in each admonition.
    - quote
    - cite
 
+.. admonition:: Deprecated
+   :class: deprecated
+
+   - deprecated
+   - archived
+
 .. literalinclude:: sample.rst
    :language: rst
    :start-at: Additional types
