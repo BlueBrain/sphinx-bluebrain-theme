@@ -33,6 +33,7 @@ jobs:
     name: Build and publish on PyPI
     runs-on: ubuntu-latest
     needs: check
+    if: github.event_name == 'release' && github.head_ref == 'master'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -52,10 +53,6 @@ jobs:
             python setup.py sdist
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@master
-        # release dev versions on PR or stable only when tag on master
-        if: |
-          (github.event_name == 'release' && github.head_ref == 'master') ||
-          (github.event_name == 'pull_request' && github.head_ref != 'master')
         with:
           user: __token__
           password: ${{ secrets.PYPI_PASSWORD }}
