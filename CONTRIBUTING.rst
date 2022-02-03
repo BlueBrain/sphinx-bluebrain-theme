@@ -45,10 +45,18 @@ Tests and linting can be run using the ``tox`` command.
 Continuous Integration (CI)
 ---------------------------
 
-1) When a PR is created / updated, a new pre-release version is released on pypi.
-2) Test that version and ammend the necessary items on the PR.
-3) Once the pre-release package is working properly, merge the PR to the default branch.
-4) Then you can tag with a release version vX.Y.Z the merged commit and a release version
+1) Create a PR with the changes.
+
+2) Test the changes installing the package
+
+   ``pip3 install 'git+https://github.com/BlueBrain/sphinx-bluebrain-theme.git@<BRANCH_NAME>#egg=sphinx-bluebrain-theme'``
+
+3) Amend the necessary items on the PR until the package is working properly.
+
+4) Merge the PR to the default branch.
+
+5) Then you can tag with a release version vX.Y.Z the merged commit and a release version
    will be produced in pypi.
-5) The documentation is `built <https://readthedocs.org/projects/sphinx-bluebrain-theme/builds>`_
+
+6) The documentation is `built <https://readthedocs.org/projects/sphinx-bluebrain-theme/builds>`_
    on push to the default branch.
