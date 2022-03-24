@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2.9
+-----
+
+- |changed| pin version of jinja to 3.0.3.
+
 0.2.8
 -----
 
