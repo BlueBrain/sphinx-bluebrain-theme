@@ -9,7 +9,7 @@ jobs:
   build-n-publish:
     name: Build and publish on PyPI
     runs-on: ubuntu-latest
-    if: github.head_ref == 'master'
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
         with:
