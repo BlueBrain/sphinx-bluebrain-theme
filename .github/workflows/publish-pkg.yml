@@ -3,7 +3,7 @@ name: Publish pypi
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+.dev[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build-n-publish:
@@ -20,9 +20,6 @@ jobs:
           python-version: 3.7
       - name: Install dependencies
         run: |
-          echo ${{github.ref}}
-          echo ${{github.event_name}}
-          echo ${{github.base_ref}}
           python -m pip install --upgrade pip setuptools
           pip install tox tox-gh-actions
       - name: Build
@@ -30,7 +27,6 @@ jobs:
             python translate_templates.py
             python setup.py sdist
       - name: Publish package to PyPI
-        if: github.base_ref == 'refs/heads/master' && github.event_name == 'push'
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
