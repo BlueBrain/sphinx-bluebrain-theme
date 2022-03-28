@@ -20,9 +20,9 @@ jobs:
           python-version: 3.7
       - name: Install dependencies
         run: |
-          echo "$GITHUB_CONTEXT"
           echo ${{github.ref}}
           echo ${{github.event_name}}
+          echo ${{github.base_ref}}
           python -m pip install --upgrade pip setuptools
           pip install tox tox-gh-actions
       - name: Build
@@ -30,7 +30,7 @@ jobs:
             python translate_templates.py
             python setup.py sdist
       - name: Publish package to PyPI
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.base_ref == 'refs/heads/master' && github.event_name == 'push'
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
