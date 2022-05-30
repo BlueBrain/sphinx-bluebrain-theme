@@ -28,11 +28,13 @@ def add_autodoc_override(app):
             sea.ClassDocumenter,
             sea.ExceptionDocumenter,
             sea.DataDocumenter,
+            sea.NewTypeDataDocumenter,
             sea.FunctionDocumenter,
             sea.DecoratorDocumenter,
             sea.MethodDocumenter,
             sea.AttributeDocumenter,
-            sea.InstanceAttributeDocumenter,
+            sea.PropertyDocumenter,
+            sea.NewTypeAttributeDocumenter,
         ]
 
         for d in documenters:
