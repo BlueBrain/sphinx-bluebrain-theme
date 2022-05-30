@@ -2,7 +2,7 @@ Changelog
 =========
 
 0.2.10
------
+------
 
 - |changed| pin version of sphinx to 4.5.0.
 
