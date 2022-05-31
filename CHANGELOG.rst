@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.2.11
+------
+
+- |changed| unpin version of sphinx
+- |added| new autodoc Documenters to work with sphinx ~ 5
+
 0.2.10
 ------
 
