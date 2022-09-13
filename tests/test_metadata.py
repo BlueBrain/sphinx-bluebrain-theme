@@ -7,7 +7,7 @@ import shutil
 import sys
 import tempfile
 
-from nose import tools as nt  # pylint: disable=import-error
+import pytest
 
 from sphinx_bluebrain_theme.utils import metadata
 
@@ -28,9 +28,9 @@ def test_temp_change_working_directory():
     current_wd = os.getcwd()
 
     with metadata.change_cwd("/"):
-        nt.eq_(os.getcwd(), "/")
+        assert os.getcwd() == "/"
 
-    nt.eq_(os.getcwd(), current_wd)
+    assert os.getcwd() == current_wd
 
 
 def test_write_metadata_files():
@@ -42,8 +42,8 @@ def test_write_metadata_files():
         md_file = os.path.join(docs_path, "metadata.md")
         json_file = os.path.join(docs_path, "metadata.json")
 
-        nt.assert_true(os.path.isfile(md_file))
-        nt.assert_true(os.path.isfile(json_file))
+        assert os.path.isfile(md_file)
+        assert os.path.isfile(json_file)
 
         with open(md_file, encoding="utf8") as file_:
             content = file_.read()
@@ -51,25 +51,25 @@ def test_write_metadata_files():
 name: test-data
 ---
 """
-            nt.eq_(content, expect)
+            assert content == expect
 
         with open(json_file, encoding="utf8") as file_:
             content = file_.read()
             expect = """{"name": "test-data"}"""
-            nt.eq_(content, expect)
+            assert content == expect
 
 
 def test_add_to_path():
     """Test using a context manager to temporarily add to the system path."""
     path = "/path/to/nowhere"
     current_path = list(sys.path)
-    nt.assert_not_equal(sys.path[0], path)
+    assert sys.path[0] != path
 
     with metadata.add_to_path(path):
-        nt.eq_(sys.path[0], path)
+        assert sys.path[0] == path
 
-    nt.assert_not_equal(sys.path[0], path)
-    nt.eq_(current_path, sys.path)
+    assert sys.path[0] != path
+    assert current_path == sys.path
 
 
 def test_get_metadata_from_json():
@@ -94,9 +94,9 @@ def test_get_metadata_from_json():
         md = metadata.get_metadata_from_json(fd.name)
 
         # check contributors is blank
-        nt.eq_(md["contributors"], "")
+        assert md["contributors"] == ""
         del md["contributors"]
 
         # check all values are the same as their keys
         for k, v in md.items():
-            nt.eq_(k, v)
+            assert k == v

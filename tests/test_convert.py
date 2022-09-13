@@ -4,7 +4,7 @@ Test for the conversion of files.
 from collections import defaultdict
 
 # pylint: disable=import-error
-from nose import tools as nt
+import pytest
 from mkdocs2sphinx.convert_files import do_replacements, prepend_license
 
 
@@ -26,7 +26,7 @@ Some text embedded in a <hello> line"""
 <a>first</a>
 Some text embedded in a goodbye line"""
 
-    nt.assert_equal(text, result)
+    assert text == result
 
 
 def test_prepend_license():
@@ -40,8 +40,8 @@ text that will be used to check licenses."""
 
     # first test an unknown file type
     lictext = prepend_license((lic,), text, ".py")
-    nt.assert_equal(lictext, text)
+    assert lictext == text
 
     # test css
     lictext = prepend_license((lic,), text, ".css")
-    nt.assert_true(lictext.startswith("/*\n * LICENSE"))
+    assert lictext.startswith("/*\n * LICENSE")

@@ -4,8 +4,8 @@ Test for context injection.
 
 from collections import defaultdict
 
-from mock import patch  # pylint: disable=import-error
-from nose import tools as nt  # pylint: disable=import-error
+from unittest.mock import patch
+import pytest
 from sphinx_bluebrain_theme.utils import inject_context
 
 
@@ -17,8 +17,8 @@ def test_build_adjacent_page():
 
     page = inject_context.build_adjacent_page(data)
 
-    nt.assert_equal(page.title, "test page")
-    nt.assert_equal(page.url, "./test-url.html")
+    assert page.title == "test page"
+    assert page.url == "./test-url.html"
 
 
 def test_build_adjacent_page_none():
@@ -27,16 +27,16 @@ def test_build_adjacent_page_none():
     """
     page = inject_context.build_adjacent_page(None)
 
-    nt.assert_is_none(page)
+    assert page is None
 
 
 def test_build_no_font():
-    """Test building the font context variable with no specified font."""
+    """Test building the font context variable with no specified fo"""
     context = defaultdict(lambda: None)
     context["theme_use_google_fonts"] = False
     font = inject_context.build_font(context)
 
-    nt.assert_false(font)
+    assert not font
 
 
 def test_build_no_font_with_google_font():
@@ -45,7 +45,7 @@ def test_build_no_font_with_google_font():
     context["theme_use_google_fonts"] = True
     font = inject_context.build_font(context)
 
-    nt.assert_true(font)
+    assert font
 
 
 def test_build_font():
@@ -58,15 +58,15 @@ def test_build_font():
     context["theme_font_code"] = None
     font = inject_context.build_font(context)
 
-    nt.assert_equal(font["text"], "font-text")
-    nt.assert_equal(font["code"], "")
+    assert font["text"] == "font-text"
+    assert font["code"] == ""
 
     # now set code font
     context["theme_font_code"] = "font-code"
     font = inject_context.build_font(context)
 
-    nt.assert_equal(font["text"], "font-text")
-    nt.assert_equal(font["code"], "font-code")
+    assert font["text"] == "font-text"
+    assert font["code"] == "font-code"
 
 
 def test_copyright_warning():
@@ -80,7 +80,7 @@ def test_copyright_warning():
 
     with patch("sphinx_bluebrain_theme.utils.inject_context.logger") as mock_logger:
         inject_context.bbp_context_cleanup(context)
-        nt.assert_equal(mock_logger.warning.call_count, 1)
+        assert mock_logger.warning.call_count == 1
 
 
 def test_copyright_no_warning():
@@ -89,7 +89,7 @@ def test_copyright_no_warning():
 
     with patch("sphinx_bluebrain_theme.utils.inject_context.logger") as mock_logger:
         inject_context.bbp_context_cleanup(context)
-        nt.assert_equal(mock_logger.warning.call_count, 0)
+        assert mock_logger.warning.call_count == 0
 
 
 def test_build_extra_empty():
@@ -108,11 +108,11 @@ def test_build_extra():
     }
     extra = inject_context.build_extra(context, "en")
 
-    nt.assert_equal(extra["repo_icon"], "icon")
-    nt.assert_equal(extra["social"], "social")
-    nt.assert_equal(extra["manifest"], "manifest")
-    nt.assert_equal(extra["search"], {"tokenizer": r"[\s]+"})
-    nt.assert_is_none(extra["disqus"])
+    assert extra["repo_icon"] == "icon"
+    assert extra["social"] == "social"
+    assert extra["manifest"] == "manifest"
+    assert extra["search"] == {"tokenizer": r"[\s]+"}
+    assert extra["disqus"] is None
 
 
 def test_bbp_cleanup():
@@ -135,11 +135,11 @@ linkedin,linkedin.com"""
     inject_context.bbp_context_cleanup(context)
 
     # check the address
-    nt.assert_equal(context["theme_address"], ["Blue Brain Project", "Geneva"])
+    assert context["theme_address"] == ["Blue Brain Project", "Geneva"]
 
     # check the social output
     social_result = [
         {"type": "facebook", "link": "facebook.com"},
         {"type": "linkedin", "link": "linkedin.com"},
     ]
-    nt.assert_equal(context["config"]["extra"]["social"], social_result)
+    assert context["config"]["extra"]["social"] == social_result

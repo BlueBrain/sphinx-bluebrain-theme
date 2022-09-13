@@ -4,7 +4,7 @@ Test for the custom filters.
 
 # pylint: disable=import-error
 from sphinx.application import Sphinx
-from nose import tools as nt
+import pytest
 from sphinx_bluebrain_theme.utils.filters import add_filters, url_filter
 
 
@@ -14,7 +14,7 @@ def test_add_filter():
     """
     app = Sphinx("./", None, "./build", "./doctree", "html")
     add_filters(app)
-    nt.assert_equal(app.builder.templates.environment.filters["url"], url_filter)
+    assert app.builder.templates.environment.filters["url"] == url_filter
 
 
 def test_url_filter():
@@ -29,8 +29,8 @@ def test_url_filter():
 
     # test a url that shouldn't be changed
     url = url_filter(context, url_static)
-    nt.assert_equal(url, url_static)
+    assert url == url_static
 
     # test a url which should be converted
     url = url_filter(context, url_assets)
-    nt.assert_equal(url, url_static)
+    assert url == url_static

@@ -4,7 +4,7 @@ search used by mkdocs-material.
 """
 
 # pylint: disable=import-error
-from nose import tools as nt
+import pytest
 from sphinx_bluebrain_theme.utils import search_builder
 
 
@@ -18,7 +18,7 @@ def test_index_entry():
 
     text = """Line one . Line two."""
 
-    nt.assert_equal(text, entry.text)
+    assert text == entry.text
 
 
 def test_index_as_dict():
@@ -31,4 +31,4 @@ def test_index_as_dict():
 
     as_dict = {"location": "/", "title": "test", "text": """Line one . Line two."""}
 
-    nt.assert_equal(as_dict, entry.as_dict())
+    assert as_dict == entry.as_dict()
