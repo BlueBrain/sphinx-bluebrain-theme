@@ -2,8 +2,7 @@
 Test nav utils
 """
 
-# pylint: disable=import-error
-from nose import tools as nt
+import pytest  # pylint: disable=unused-import
 from sphinx_bluebrain_theme.utils import navutils
 
 
@@ -16,13 +15,13 @@ def test_set_active():
 
     page.parent = parent
 
-    nt.assert_equal(page.active, False)
-    nt.assert_equal(parent.active, False)
+    assert not page.active
+    assert not parent.active
 
     page.active = True
 
-    nt.assert_equal(page.active, True)
-    nt.assert_equal(parent.active, True)
+    assert page.active
+    assert parent.active
 
 
 def test_page_equality():
@@ -34,15 +33,15 @@ def test_page_equality():
     page2 = navutils.Page()
     nav = navutils.Nav()
 
-    nt.assert_equal(page1 == page2, False)
-    nt.assert_equal(page1 == nav, False)
+    assert page1 != page2
+    assert page1 != nav
 
     page1.active = True
     page2.active = True
     nav.active = True
 
-    nt.assert_equal(page1 == nav, False)
-    nt.assert_equal(page1 == page2, True)
+    assert page1 != nav
+    assert page1 == page2
 
 
 def test_page_bool():
@@ -54,12 +53,12 @@ def test_page_bool():
     """
     page = navutils.Page()
 
-    nt.assert_equal(bool(page), False)
+    assert not bool(page)
 
     page.title = "Test Title"
     page.url = "www.testurl.com"
 
-    nt.assert_equal(bool(page), True)
+    assert bool(page)
 
 
 def test_navbase():
@@ -69,19 +68,19 @@ def test_navbase():
     nb = navutils.NavBase()
     nb.children = [0, 1, 2, 3]
 
-    nt.assert_sequence_equal(list(nb), list(nb.children))
-    nt.assert_equal(len(nb), len(nb.children))
-    nt.assert_equal(len(nb), 4)
-    nt.assert_equal(nb[0], 0)
-    nt.assert_equal(nb[3], 3)
+    assert list(nb) == list(nb.children)
+    assert len(nb) == len(nb.children)
+    assert len(nb) == 4
+    assert nb[0] == 0
+    assert nb[3] == 3
 
     nb.children.pop(0)
 
-    nt.assert_sequence_equal(list(nb), list(nb.children))
-    nt.assert_equal(len(nb), len(nb.children))
-    nt.assert_equal(len(nb), 3)
-    nt.assert_equal(nb[0], 1)
-    nt.assert_equal(nb[2], 3)
+    assert list(nb) == list(nb.children)
+    assert len(nb) == len(nb.children)
+    assert len(nb) == 3
+    assert nb[0] == 1
+    assert nb[2] == 3
 
 
 def test_set_homepage():
@@ -94,22 +93,22 @@ def test_set_homepage():
     page2.url = "homepage.html"
     nav = navutils.Nav()
 
-    nt.eq_(page1.is_homepage, False)
-    nt.eq_(page2.is_homepage, False)
+    assert not page1.is_homepage
+    assert not page2.is_homepage
 
     nav.children = [page1, page2]
     nav.set_homepage("homepage")
 
-    nt.eq_(page1.is_homepage, False)
-    nt.eq_(page2.is_homepage, True)
+    assert not page1.is_homepage
+    assert page2.is_homepage
 
     page2.is_homepage = False
     page2.url = "#"
 
-    nt.eq_(page1.is_homepage, False)
-    nt.eq_(page2.is_homepage, False)
+    assert not page1.is_homepage
+    assert not page2.is_homepage
 
     nav.set_homepage("another_page")
 
-    nt.eq_(page1.is_homepage, False)
-    nt.eq_(page2.is_homepage, True)
+    assert not page1.is_homepage
+    assert page2.is_homepage
