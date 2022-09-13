@@ -3,8 +3,7 @@ Test for the manipulation of Jinja blocks in text using the
 mkdocs2sphinx module functions.
 """
 
-# pylint: disable=import-error
-import pytest
+import pytest  # pylint: disable=unused-import
 from mkdocs2sphinx import clear_blocks as cb
 
 
@@ -40,7 +39,7 @@ And even more text
 
     # outer endblock
     assert bl[3]["type"] == "endblock"
-    assert bl[3]["block_name"] == None
+    assert bl[3]["block_name"] is None
 
 
 def test_block_clearing():
@@ -62,33 +61,36 @@ And even more text
     # remove inner content
     tx = cb.remove_block(text, "outer", keep_nested=False)
     assert (
-        tx ==
-        """Outer text
+        tx
+        == """Outer text
 {% block outer %}{% endblock %}
-""")
+"""
+    )
 
     # remove inner content, keeping nested
     tx = cb.remove_block(text, "outer", keep_nested=True)
     assert (
-        tx ==
-        """Outer text
+        tx
+        == """Outer text
 {% block outer %}{% block inner %}
 Innermost text
 {% endblock inner %}{% endblock %}
-""")
+"""
+    )
 
     # remove innermost content
     tx = cb.remove_block(text, "inner", keep_nested=True)
     assert (
-        tx ==
-        """Outer text
+        tx
+        == """Outer text
 {% block outer %}
 Inner text
 {% block inner %}{% endblock inner %}
 Additional text
 And even more text
 {% endblock %}
-""")
+"""
+    )
 
     # try to remove a non-existant block
     tx = cb.remove_block(text, "imaginary", keep_nested=True)
@@ -114,7 +116,8 @@ And even more text
     # remove inner content
     tx = cb.remove_blocks(text, ["outer", "inner"], keep_nested=True)
     assert (
-        tx ==
-        """Outer text
+        tx
+        == """Outer text
 {% block outer %}{% block inner %}{% endblock inner %}{% endblock %}
-""")
+"""
+    )

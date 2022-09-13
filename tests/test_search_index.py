@@ -3,8 +3,7 @@ Test for search index builder which is required for lunr
 search used by mkdocs-material.
 """
 
-# pylint: disable=import-error
-import pytest
+import pytest  # pylint: disable=unused-import
 from sphinx_bluebrain_theme.utils import search_builder
 
 

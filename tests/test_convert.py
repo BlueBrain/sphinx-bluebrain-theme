@@ -3,8 +3,7 @@ Test for the conversion of files.
 """
 from collections import defaultdict
 
-# pylint: disable=import-error
-import pytest
+import pytest  # pylint: disable=unused-import
 from mkdocs2sphinx.convert_files import do_replacements, prepend_license
 
 

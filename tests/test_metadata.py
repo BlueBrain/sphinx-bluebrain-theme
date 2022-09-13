@@ -7,7 +7,7 @@ import shutil
 import sys
 import tempfile
 
-import pytest
+import pytest  # pylint: disable=unused-import
 
 from sphinx_bluebrain_theme.utils import metadata
 

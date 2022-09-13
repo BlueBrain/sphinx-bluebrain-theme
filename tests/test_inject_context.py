@@ -5,7 +5,7 @@ Test for context injection.
 from collections import defaultdict
 
 from unittest.mock import patch
-import pytest
+import pytest  # pylint: disable=unused-import
 from sphinx_bluebrain_theme.utils import inject_context
 
 

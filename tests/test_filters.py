@@ -2,9 +2,8 @@
 Test for the custom filters.
 """
 
-# pylint: disable=import-error
 from sphinx.application import Sphinx
-import pytest
+import pytest  # pylint: disable=unused-import
 from sphinx_bluebrain_theme.utils.filters import add_filters, url_filter
 
 
@@ -14,6 +13,7 @@ def test_add_filter():
     """
     app = Sphinx("./", None, "./build", "./doctree", "html")
     add_filters(app)
+    # pylint: disable=comparison-with-callable
     assert app.builder.templates.environment.filters["url"] == url_filter
 
 
@@ -22,7 +22,9 @@ def test_url_filter():
     Test the conversion of urls.
     """
 
-    pathto = lambda x, y: x
+    def pathto(x, _):
+        return x
+
     context = {"pathto": pathto}
     url_static = "_static/test_asset.css"
     url_assets = "assets/test_asset.css"

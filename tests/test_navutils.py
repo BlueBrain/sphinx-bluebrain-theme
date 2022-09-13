@@ -2,8 +2,7 @@
 Test nav utils
 """
 
-# pylint: disable=import-error
-import pytest
+import pytest  # pylint: disable=unused-import
 from sphinx_bluebrain_theme.utils import navutils
 
 
