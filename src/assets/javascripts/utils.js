@@ -1,16 +1,25 @@
 
 (function () {
+  const firstPartReg = new RegExp('^\/([^\/]+).*$');
+  const bbpCatalogBase = 'documentation';
+  const readthedocsUrl = 'readthedocs.io';
+
   function processHomeUrl() {
     // will find the first part of path after url
-    const firstPartReg = new RegExp('^\/([^\/]+).*$');
     const prunedPath = firstPartReg.exec(window.location.pathname);
+    if (prunedPath.length < 2) return '#';
 
-    if (!firstPartReg || prunedPath.length < 2) return;
-
-    const redirectUrl = `${window.location.origin}/${prunedPath[1]}`;
-
-    const anchorElem = document.getElementById('homepageLink');
-    anchorElem.href = redirectUrl;
+    const basePath = prunedPath[1];
+    if (basePath === bbpCatalogBase) {
+      return `${window.location.origin}/${basePath}`;
+    }
+    if (window.location.host.includes(readthedocsUrl)) {
+      return `${window.location.origin}`; // go to root
+    }
+    return '#';
   }
-  processHomeUrl();
+
+  const redirectUrl = processHomeUrl();
+  const anchorElem = document.getElementById('homepageLink');
+  anchorElem.href = redirectUrl;
 })();
