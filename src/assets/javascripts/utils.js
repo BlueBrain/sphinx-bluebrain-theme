@@ -1,13 +1,14 @@
 
 (() => {
   // find the first part of path after origin
-  const firstPartReg = new RegExp('^\/([^\/]+).*$');
-  const bbpCatalogBase = 'documentation';
-  const readthedocsOrigin = 'readthedocs.io';
+  const firstPartReg = new RegExp("^\/([^\/]+).*$");
+  const bbpCatalogBase = "documentation";
+  const readthedocsOrigin = "readthedocs.io";
+  const homeButtonId = "homepageLink";
 
   function processHomeUrl() {
     const prunedPath = firstPartReg.exec(window.location.pathname);
-    if (prunedPath.length < 2) return '#';
+    if (prunedPath.length < 2) { return "#"; }
 
     const basePath = prunedPath[1];
     if (basePath === bbpCatalogBase) {
@@ -16,10 +17,10 @@
     if (window.location.host.includes(readthedocsOrigin)) {
       return `${window.location.origin}`; // go to root
     }
-    return '#';
+    return "#";
   }
 
   const redirectUrl = processHomeUrl();
-  const anchorElem = document.getElementById('homepageLink');
+  const anchorElem = document.getElementById(homeButtonId);
   anchorElem.href = redirectUrl;
 })();
