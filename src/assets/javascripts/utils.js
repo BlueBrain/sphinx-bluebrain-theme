@@ -1,11 +1,11 @@
 
-(function () {
+(() => {
+  // find the first part of path after origin
   const firstPartReg = new RegExp('^\/([^\/]+).*$');
   const bbpCatalogBase = 'documentation';
-  const readthedocsUrl = 'readthedocs.io';
+  const readthedocsOrigin = 'readthedocs.io';
 
   function processHomeUrl() {
-    // will find the first part of path after url
     const prunedPath = firstPartReg.exec(window.location.pathname);
     if (prunedPath.length < 2) return '#';
 
@@ -13,7 +13,7 @@
     if (basePath === bbpCatalogBase) {
       return `${window.location.origin}/${basePath}`;
     }
-    if (window.location.host.includes(readthedocsUrl)) {
+    if (window.location.host.includes(readthedocsOrigin)) {
       return `${window.location.origin}`; // go to root
     }
     return '#';
