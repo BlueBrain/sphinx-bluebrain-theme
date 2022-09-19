@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.3.0
+-----
+
+- |changed| bump python version in tox
+- |fixed| show or hide home button depending on context
+- |fixed| move classifier in metadata section in setup.cfg
+
 0.2.11
 ------
 
