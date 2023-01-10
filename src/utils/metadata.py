@@ -90,14 +90,22 @@ def build_metadata_from_setuptools_dict(metadata):
     # https://github.com/pypa/warehouse/blob/master/warehouse/templates/packaging/detail.html
     # https://github.com/pypa/virtualenv/blob/master/setup.cfg
     project_urls = metadata["project_urls"]
+    if "Source" in project_urls:
+        repo_url = project_urls["Source"]
+    else:
+        repo_url = project_urls["Repository"]
+    if "url" in metadata:
+        homepage_url = metadata["url"]
+    else:
+        homepage_url = project_urls["Homepage"]
     output = {
         "name": metadata["name"],
         "version": metadata["version"],
         "description": metadata["description"],
-        "homepage": metadata["url"],
+        "homepage": homepage_url,
         "license": metadata["license"],
         "maintainers": metadata["author"],
-        "repository": project_urls["Source"],
+        "repository": repo_url,
         "issuesurl": project_urls["Tracker"],
     }
 

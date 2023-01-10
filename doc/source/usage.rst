@@ -85,6 +85,17 @@ variable in the ``html_theme_options`` dict in your ``conf.py``.
          ...
       )
 
+   If the metadata are stored in a ``pyproject.toml`` file, the URLs should all be given in the
+   ``project_urls`` field using the following entries:
+
+   .. code-block:: TOML
+      :linenos:
+
+      [project.urls]
+      Homepage = "project-homepage-url"
+      Repository = "project-source-repository-url"
+      Tracker = "project-bug-tracker-url"
+
 ``metadata_file``
    Provide the path (relative to the ``conf.py``) of a ``.json`` which contains the required metadata.
    It must follow the structure of a standard ``package.json`` file, although it can be named differently.
