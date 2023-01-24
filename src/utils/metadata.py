@@ -89,6 +89,9 @@ def build_metadata_from_setuptools_dict(metadata):
     # based on warehouse and virtualenv examples
     # https://github.com/pypa/warehouse/blob/master/warehouse/templates/packaging/detail.html
     # https://github.com/pypa/virtualenv/blob/master/setup.cfg
+    # and on PEP621 for projects that use pyproject.toml files
+    # https://peps.python.org/pep-0621/#example
+    # https://peps.python.org/pep-0621/#have-a-separate-url-home-page-field
     project_urls = metadata["project_urls"]
     if "Source" in project_urls:
         repo_url = project_urls["Source"]
