@@ -101,13 +101,17 @@ def build_metadata_from_setuptools_dict(metadata):
         homepage_url = metadata["url"]
     else:
         homepage_url = project_urls["Homepage"]
+    if "author" in metadata:
+        author = metadata["author"]
+    else:
+        author = metadata["author-email"]
     output = {
         "name": metadata["name"],
         "version": metadata["version"],
         "description": metadata["description"],
         "homepage": homepage_url,
         "license": metadata["license"],
-        "maintainers": metadata["author"],
+        "maintainers": author,
         "repository": repo_url,
         "issuesurl": project_urls["Tracker"],
     }
