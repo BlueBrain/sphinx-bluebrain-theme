@@ -5,13 +5,13 @@ which shows the expected structure of the JSON search index and the
 approach used by mkdocs to generate it
 """
 
+import json
+import importlib
+import os
 import re
-from json import dumps
 
-try:
-    from html.parser import HTMLParser
-except ImportError:
-    from HTMLParser import HTMLParser
+from html.parser import HTMLParser
+from sphinx.util.fileutil import copy_asset_file
 
 
 class IndexEntry:
@@ -82,7 +82,7 @@ class SearchIndexBuilder(HTMLParser):
 
         The dumped json is used for the search index build.
         """
-        return dumps(
+        return json.dumps(
             {"docs": [e.as_dict() for e in self._entries], "config": {}}, sort_keys=True
         )
 
@@ -125,3 +125,12 @@ class SearchIndexBuilder(HTMLParser):
             self._current_section.title = data
         elif self._current_section is not None:
             self._current_section.text_list.append(data)
+
+
+def copy_search_index_json(app, exc):
+    """Create and copy the search_index.json file."""
+    if app.builder.format == 'html' and not exc:
+        output = os.path.join(app.builder.outdir, '_static/search')
+        path = importlib.resources.files('sphinx_bluebrain_theme')
+        with importlib.resources.as_file(path / 'static/search/search_index.json_t') as file_:
+            copy_asset_file(str(file_), output, context=app.builder.globalcontext)

@@ -5,3 +5,4 @@ from sphinx_bluebrain_theme.utils.inject_context import inject_context_variables
 from sphinx_bluebrain_theme.utils.filters import add_filters
 from sphinx_bluebrain_theme.utils.autodoc_override import add_autodoc_override
 from sphinx_bluebrain_theme.utils.metadata import write_metadata, write_metadata_sphinx
+from sphinx_bluebrain_theme.utils.search_builder import copy_search_index_json
