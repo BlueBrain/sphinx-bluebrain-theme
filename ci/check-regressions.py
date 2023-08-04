@@ -29,7 +29,6 @@ def diff_contents():
     Note: We have to do this manually so we can ignore certain changes, like
     the cache busting appends that are done for static files
     """
-
     pattern = re.compile(r"\?v=[0-9A-Fa-f]*")
 
     expected = Path("tests/data/regression.html")
