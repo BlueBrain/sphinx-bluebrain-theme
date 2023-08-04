@@ -15,4 +15,4 @@ def setup(app):
     app.connect("env-updated", utils.write_metadata_sphinx)
     app.connect("html-page-context", utils.build_tocs)
     app.connect("html-page-context", utils.inject_context_variables)
-    app.connect('build-finished', utils.copy_search_index_json)
+    app.connect("build-finished", utils.copy_search_index_json)

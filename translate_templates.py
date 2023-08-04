@@ -1,8 +1,7 @@
 """This module will translate the mkdocs material theme to a Sphinx theme."""
 
+import shutil
 from pathlib import Path
-
-from distutils import dir_util  # pylint: disable= no-name-in-module
 
 from mkdocs2sphinx import copy_source, convert_files
 
@@ -17,7 +16,6 @@ def _ignore_on_copy(directory, contents):  # pylint: disable=unused-argument
     Returns:
         list: A list of files to be ignored.
     """
-    # shutil passes strings, so ensure a Path
     directory = Path(directory)
     if directory.name == "material":
         return ["mkdocs_theme.yml", "main.html", "404.html"]
@@ -68,10 +66,7 @@ if __name__ == "__main__":
         end_colour = "\033[0m"
         print(f"{colour}{k}: {v}{end_colour}")
 
-    # copy some additional files into the theme
-    # copy_tree requires strings not paths, we use it here
-    # as it allows directories to be merged (shutil.copytree does not)
-    dir_util.copy_tree(str(PWD_PATH / "src"), str(OUT_PATH))
+    shutil.copytree(PWD_PATH / "src", OUT_PATH, dirs_exist_ok=True)
 
     # sphinx expects a 'static' directory so rename the mkdocs-material one
     (OUT_PATH / "assets").rename(OUT_PATH / "static")

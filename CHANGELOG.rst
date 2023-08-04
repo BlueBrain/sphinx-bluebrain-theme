@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.4.2
+-----
+- |fixed| Fix creation of empty search_index.json
+
 0.3.0
 -----
 
