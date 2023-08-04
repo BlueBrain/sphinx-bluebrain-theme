@@ -10,8 +10,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import importlib.metadata
 import os
-from pkg_resources import get_distribution
 
 # these pages will have the version overwritten so that it doesn't fail
 # when a new version is released.
@@ -32,7 +32,7 @@ if on_rtd:
         root="../..", relative_to=__file__, local_scheme="no-local-version"
     )
 else:
-    version = get_distribution("sphinx-bluebrain-theme").version
+    version = importlib.metadata.version("sphinx-bluebrain-theme")
 
 release = version
 
