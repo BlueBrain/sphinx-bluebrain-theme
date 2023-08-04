@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-"""Check for regresssions of building simple docs."""
+"""Check for regressions of building simple docs."""
 
+import itertools
 import json
 from pathlib import Path
 import sys
+import re
 
 
 def check_empty_search_index_json():
@@ -28,11 +30,7 @@ def diff_contents():
     the cache busting appends that are done for static files
     """
 
-    def find_differing_offset(l0, l1):
-        for i in range(min(len(l0), len(l1))):
-            if l0[i] != l1[i]:
-                return i
-        assert False, "Should never get here"
+    pattern = re.compile(r"\?v=[0-9A-Fa-f]*")
 
     expected = Path("tests/data/regression.html")
     new = Path("doc/build/html/regression.html")
@@ -43,14 +41,14 @@ def diff_contents():
     with new.open(encoding="utf8") as fd:
         new_lines = fd.readlines()
 
-    for i, (expected_line, new_line) in enumerate(zip(expected_lines, new_lines)):
+    for i, (expected_line, new_line) in enumerate(
+        itertools.zip_longest(expected_lines, new_lines)
+    ):
         expected_line, new_line = expected_line.strip(), new_line.strip()
         if expected_line == new_line:
             continue
 
-        start = find_differing_offset(expected_line, new_line)
-        quote = new_line[start:].find('"')
-        if quote != -1 and int(new_line[start : start + quote], 16):
+        if pattern.sub("", new_line) == pattern.sub("", expected_line):
             continue
 
         print(f"on line {i}, `{expected_line}` != `{new_line}`")

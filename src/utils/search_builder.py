@@ -6,7 +6,7 @@ approach used by mkdocs to generate it
 """
 
 import json
-import importlib
+import importlib.resources
 import os
 import re
 
