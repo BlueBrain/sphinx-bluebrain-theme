@@ -124,18 +124,14 @@ def get_metadata_from_distribution(distribution_name):
     """Get the metadata from a distribution."""
     metadata = {}
     # useful information: https://packaging.python.org/specifications/core-metadata/
-    for mdl in importlib.metadata.metadata(distribution_name):
-        # guard against silly data
-        if ":" not in mdl:
-            continue
-
-        key, value = mdl.split(":", 1)
+    md = importlib.metadata.metadata(distribution_name)
+    for key in md:
         key = key.lower()
-        value = value.strip()
+        value = md[key].strip()
 
         # treat UNKNOWN as no value, this the setuptools metadata
         # equivalent of None
-        if value == "UNKNOWN":
+        if not value or value == "UNKNOWN":
             continue
 
         # handle special cases
