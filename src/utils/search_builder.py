@@ -8,15 +8,11 @@ approach used by mkdocs to generate it
 import json
 import os
 import re
-
-try:
-    from importlib.resources import files, as_file
-except ImportError:
-    # backport for python 3.8
-    from importlib_resources import files, as_file
-
 from html.parser import HTMLParser
+
 from sphinx.util.fileutil import copy_asset_file
+
+from sphinx_bluebrain_theme.utils._importlib import resources as importlib_resources
 
 
 class IndexEntry:
@@ -136,6 +132,8 @@ def copy_search_index_json(app, exc):
     """Create and copy the search_index.json file."""
     if app.builder.format == "html" and not exc:
         output = os.path.join(app.builder.outdir, "_static/search")
-        path = files("sphinx_bluebrain_theme")
-        with as_file(path / "static/search/search_index.json_t") as file_:
+        path = importlib_resources.files("sphinx_bluebrain_theme")
+        with importlib_resources.as_file(
+            path / "static/search/search_index.json_t"
+        ) as file_:
             copy_asset_file(str(file_), output, context=app.builder.globalcontext)

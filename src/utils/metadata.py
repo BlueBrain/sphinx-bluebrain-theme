@@ -1,7 +1,6 @@
 """Utilities for creating a metadata file."""
 
 import datetime
-import importlib.metadata
 import json
 import os
 import sys
@@ -9,6 +8,8 @@ from contextlib import contextmanager
 from subprocess import CalledProcessError, check_output
 
 import sphinx.util
+
+from sphinx_bluebrain_theme.utils._importlib import metadata as importlib_metadata
 
 logger = sphinx.util.logging.getLogger(__name__)
 
@@ -131,7 +132,7 @@ def get_metadata_from_distribution(distribution_name):
     metadata = {}
     # useful information: https://packaging.python.org/specifications/core-metadata/
     # the keys are all lower case and using _ as a separator
-    metadata_json = importlib.metadata.metadata(distribution_name).json
+    metadata_json = importlib_metadata.metadata(distribution_name).json
     for key, value in metadata_json.items():
         # treat UNKNOWN as no value, this the setuptools metadata
         # equivalent of None
