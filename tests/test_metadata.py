@@ -100,3 +100,34 @@ def test_get_metadata_from_json():
         # check all values are the same as their keys
         for k, v in md.items():
             assert k == v
+
+
+def test_get_metadata_from_distribution():
+    """Test getting metadata from a distribution.
+
+    The package itself must be installed in the virtualenv.
+    """
+    result = metadata.get_metadata_from_distribution("sphinx-bluebrain-theme")
+    assert set(result) == {
+        "contributors",
+        "description",
+        "homepage",
+        "issuesurl",
+        "license",
+        "maintainers",
+        "name",
+        "repository",
+        "version",
+    }
+    # ignore version and description
+    del result["version"]
+    del result["description"]
+    assert result == {
+        "name": "sphinx-bluebrain-theme",
+        "homepage": "https://github.com/BlueBrain/sphinx-bluebrain-theme",
+        "license": "MIT License",
+        "maintainers": "Blue Brain Project, EPFL",
+        "repository": "https://github.com/BlueBrain/sphinx-bluebrain-theme",
+        "issuesurl": "https://github.com/BlueBrain/sphinx-bluebrain-theme/issues",
+        "contributors": None,
+    }
