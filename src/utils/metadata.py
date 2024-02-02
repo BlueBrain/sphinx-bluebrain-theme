@@ -1,19 +1,16 @@
 """Utilities for creating a metadata file."""
+
 import datetime
+import importlib.metadata
 import json
 import os
 import sys
-
 from contextlib import contextmanager
-from subprocess import check_output, CalledProcessError
+from subprocess import CalledProcessError, check_output
 
-import sphinx
-from pkg_resources import get_distribution
-
+import sphinx.util
 
 logger = sphinx.util.logging.getLogger(__name__)
-
-METADATA_NAMES = ("METADATA", "PKG-INFO")
 
 
 @contextmanager
@@ -125,22 +122,9 @@ def build_metadata_from_setuptools_dict(metadata):
 
 def get_metadata_from_distribution(distribution_name):
     """Get the metadata from a distribution."""
-    # useful information: https://packaging.python.org/specifications/core-metadata/
-    dist = get_distribution(distribution_name)
-
     metadata = {}
-
-    # get metadata name or error
-    for mdn in METADATA_NAMES:
-        if dist.has_metadata(mdn):
-            metadata_name = mdn
-            break
-    else:
-        raise FileNotFoundError(
-            f"package has no metadata file with name: {METADATA_NAMES}"
-        )
-
-    for mdl in dist.get_metadata_lines(metadata_name):
+    # useful information: https://packaging.python.org/specifications/core-metadata/
+    for mdl in importlib.metadata.metadata(distribution_name):
         # guard against silly data
         if ":" not in mdl:
             continue
