@@ -1,19 +1,23 @@
 """Utilities for creating a metadata file."""
+
 import datetime
 import json
 import os
 import sys
-
 from contextlib import contextmanager
-from subprocess import check_output, CalledProcessError
+from subprocess import CalledProcessError, check_output
 
-import sphinx
-from pkg_resources import get_distribution
+import sphinx.util
 
+from sphinx_bluebrain_theme.utils._importlib import metadata as importlib_metadata
 
 logger = sphinx.util.logging.getLogger(__name__)
 
-METADATA_NAMES = ("METADATA", "PKG-INFO")
+
+def _parse_item(item):
+    """Given a string with 2 items separated by comma, return a tuple (key, value)."""
+    key, value = item.split(",", 1)
+    return key.strip(), value.strip()
 
 
 @contextmanager
@@ -104,7 +108,7 @@ def build_metadata_from_setuptools_dict(metadata):
     if "author" in metadata:
         author = metadata["author"]
     else:
-        author = metadata["author-email"]
+        author = metadata["author_email"]
     output = {
         "name": metadata["name"],
         "version": metadata["version"],
@@ -125,59 +129,21 @@ def build_metadata_from_setuptools_dict(metadata):
 
 def get_metadata_from_distribution(distribution_name):
     """Get the metadata from a distribution."""
-    # useful information: https://packaging.python.org/specifications/core-metadata/
-    dist = get_distribution(distribution_name)
-
     metadata = {}
-
-    # get metadata name or error
-    for mdn in METADATA_NAMES:
-        if dist.has_metadata(mdn):
-            metadata_name = mdn
-            break
-    else:
-        raise FileNotFoundError(
-            f"package has no metadata file with name: {METADATA_NAMES}"
-        )
-
-    for mdl in dist.get_metadata_lines(metadata_name):
-        # guard against silly data
-        if ":" not in mdl:
-            continue
-
-        key, value = mdl.split(":", 1)
-        key = key.lower()
-        value = value.strip()
-
+    # useful information: https://packaging.python.org/specifications/core-metadata/
+    # the keys are all lower case and using _ as a separator
+    metadata_json = importlib_metadata.metadata(distribution_name).json
+    for key, value in metadata_json.items():
         # treat UNKNOWN as no value, this the setuptools metadata
         # equivalent of None
-        if value == "UNKNOWN":
+        if not value or value == "UNKNOWN":
             continue
-
         # handle special cases
-        if key == "project-url":
+        if key == "project_url":
             key = "project_urls"
-            inner_key, inner_value = value.split(",", 1)
-            inner_value = inner_value.strip()
-            # project-urls is a dict
-            value = metadata.get(key, {})
-            value[inner_key] = inner_value
-        elif key in {
-            "platform",
-            "supported-platform",
-            "requires-dist",
-            "requires-external",
-            "provides-extra",
-            "provides-dist",
-            "obsoletes-dist",
-            "classifier",
-        }:
-            key = key.replace("-", "_") + "s"
-            inner_value = value
-            # these keys have list values
-            value = metadata.get(key, [])
-            value.append(inner_value)
-
+            value = dict(_parse_item(item) for item in value)
+        elif isinstance(value, list):
+            key = f"{key}s"
         metadata[key] = value
 
     # allow summary as the description
@@ -185,8 +151,8 @@ def get_metadata_from_distribution(distribution_name):
         metadata["description"] = metadata["summary"]
 
     # home-page needs to be used for the url
-    if "home-page" in metadata:
-        metadata["url"] = metadata["home-page"]
+    if "home_page" in metadata:
+        metadata["url"] = metadata["home_page"]
 
     return build_metadata_from_setuptools_dict(metadata)
 

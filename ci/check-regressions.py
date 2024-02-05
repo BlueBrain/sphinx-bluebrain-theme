@@ -3,9 +3,18 @@
 
 import itertools
 import json
-from pathlib import Path
-import sys
 import re
+import sys
+from pathlib import Path
+
+import sphinx
+
+
+def _get_expected_path():
+    if sphinx.version_info < (7, 2):
+        # sphinx 7.2.0 dropped Python 3.8 support
+        return Path("tests/data/regression_sphinx_7.1.html")
+    return Path("tests/data/regression.html")
 
 
 def check_empty_search_index_json():
@@ -31,7 +40,7 @@ def diff_contents():
     """
     pattern = re.compile(r"\?v=[0-9A-Fa-f]*")
 
-    expected = Path("tests/data/regression.html")
+    expected = _get_expected_path()
     new = Path("doc/build/html/regression.html")
 
     with expected.open(encoding="utf8") as fd:

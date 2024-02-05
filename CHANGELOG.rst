@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.4.3
+-----
+- |added| Add tests for Python 3.12
+- |changed| Replace pkg_resources with importlib
+- |fixed| Fix ``regression.html`` with sphinx 7.2
+
 0.4.2
 -----
 - |fixed| Fix creation of empty search_index.json
