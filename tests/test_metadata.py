@@ -119,7 +119,7 @@ def test_get_metadata_from_distribution():
         "repository",
         "version",
     }
-    # ignore version because not fixed
+    # ignore version because it can change
     del result["version"]
     assert result == {
         "name": "sphinx-bluebrain-theme",
