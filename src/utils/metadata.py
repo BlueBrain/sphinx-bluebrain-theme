@@ -112,7 +112,7 @@ def build_metadata_from_setuptools_dict(metadata):
     output = {
         "name": metadata["name"],
         "version": metadata["version"],
-        "description": metadata["description"],
+        "description": metadata["summary"],
         "homepage": homepage_url,
         "license": metadata["license"],
         "maintainers": author,
@@ -145,10 +145,6 @@ def get_metadata_from_distribution(distribution_name):
         elif isinstance(value, list):
             key = f"{key}s"
         metadata[key] = value
-
-    # allow summary as the description
-    if "description" not in metadata:
-        metadata["description"] = metadata["summary"]
 
     # home-page needs to be used for the url
     if "home_page" in metadata:

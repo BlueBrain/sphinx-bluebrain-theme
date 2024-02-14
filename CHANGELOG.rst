@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.4.4
+-----
+- |fixed| Use summary to set metadata description
+
 0.4.3
 -----
 - |added| Add tests for Python 3.12
